@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putstr_fd.c                                     :+:    :+:            */
+/*   ft_str_len.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/08 13:08:58 by swofferh       #+#    #+#                */
-/*   Updated: 2019/11/30 22:31:50 by swofferh      ########   odam.nl         */
+/*   Created: 2019/10/28 17:31:45 by swofferh       #+#    #+#                */
+/*   Updated: 2019/12/02 14:52:11 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char *s)
+size_t	ft_strlen(const char *str)
 {
-	if (s == NULL)
-		return ;
-	write(1, s, ft_strlen(s));
+	int index;
+
+	index = 0;
+	while (str[index])
+		index++;
+	return (index);
 }
