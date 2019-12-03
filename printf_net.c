@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 17:45:49 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/02 20:51:53 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/03 13:23:38 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ void 	net_printf(char *format, ...)
             break ;
 		}
 		
+		if (str[1] == 'p')						//Variable: Pointer, Adress
+		{
+			void *ptr = va_arg(arg, void *);
+			
+		}
+		
 		if (str[1] == 'd')
 		{
 			index = va_arg(arg, int);          	//Variable: Decimal/Integer (base 10)
-           	putchar(index);
-		}
-
-		if (str[1] == 'p')				//Variable: Pointer, Adress
-		{
-			index = va_arg(arg, long int);
-			puts(&index);
+           	putnbr(index);
 		}
        
 		if (str[1] == 'o')
