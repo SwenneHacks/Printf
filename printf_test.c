@@ -6,20 +6,22 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/30 18:00:18 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/03 20:23:20 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/04 20:28:31 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
-#include "lib.h"
+# include <unistd.h>
 
-void	ft_putnbr(int n);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putendl(char *s);
+int		ft_toupper(int n);
+int		ft_tolower(int n);
 char 	*ft_strrev(char *str);
 size_t	ft_strlen(const char *s);
+void	ft_putnbr_base(int n, int base);
 void 	ft_printf(char *,...);
 void	ft_found_percentage(char *str, va_list arg);
 char	*ft_itoa_base(int nbr, char *str, int base);
@@ -36,12 +38,16 @@ char	*ft_itoa_base(int nbr, char *str, int base);
 
 int 	main(void)
 {
-	char s[] = "I like Niki";
+	char s[] = "I like turtles";
 	char c = 'o';
-	char h = 'S';
-	int n = 2;
+	int n = 65;
+	char *ptr;
 	
-    ft_printf("Hell%c %s! %c%d", c, s, h, n);
+    ft_printf("String test: Hell%c %s! %c%d\n", c, s);
+	ft_printf("String test: Hell%c %s! %c%d\n", c, s);
+	ft_printf("Hexa test: %d(base 10) %x(base 16)\n", n, n);
+	printf("Hexa test: %d(base 10) %x(base 16)\n", n, n);
+	printf("%p", &ptr);
     return (0);
 }
 
@@ -66,15 +72,16 @@ void 	ft_printf(char *str, ...)
 			index = index + 2;
 		}
 	}
-	ft_putchar('\n');
 	return ;
 }
 
 // void	ft_found_backslach(char *str)
 // {
-// 	if (str[0] == '\')
+// 	if (str[0] == '\\')
+// 	{
 // 		ft_putchar(str[1]);
-// 		str++; 
+// 		str++;
+// 	}
 // }
 
 void	ft_found_percentage(char *str, va_list arg)
@@ -82,81 +89,56 @@ void	ft_found_percentage(char *str, va_list arg)
 	char 	*s;
 	int		i;
 	
-	// WIDTH OPTION
-	//if (ft_isdigit(str[1])
-	
+	//variable: STRING argument
 	if (str[1] == 's')
 	{
-		s = va_arg(arg, char *);	//variable: STRING argument
-		write(1, s, ft_strlen(s));
+		s = va_arg(arg, char *);		
+		ft_putstr(s);
 	}
 	
+	//Variable: CHAR argument
 	if (str[1] == 'c')
 	{
-		i = va_arg(arg, int);		//Variable: CHAR argument
+		i = va_arg(arg, int);			
 		ft_putchar(i);
 	}
-
+	
+	//Variable: Decimal/Integer (base 10)
 	if (str[1] == 'd' || str[1] == 'i')
 	{
-		i = va_arg(arg, int);  		 //Variable: Decimal/Integer (base 10)
-        ft_putnbr(i);
+		i = va_arg(arg, int);  			 
+        ft_putnbr_base(i, 10);
 	}
-}
-
-// char 	*ft_itoa_base(int nbr, char *str, int base) 
-// {
-//     int i = 0;
-//     int isNegative = 1;
-// 	int convert;
-
-//     while (nbr == 0)
-//     {
-//         str[i] = '0';
-// 		i++;
-//         str[i] = '\0';
-//         return (str);
-//     }
-//     if (nbr < 0 && base == 10)
-//     {
-//         isNegative = 0;
-//         nbr = -nbr;
-// 	}
-//     while (nbr != 0)
-//     {
-//         convert = nbr % base; 
-//         str[i++] = (convert > 9)? (convert - 10) + 'a' : convert + '0'; 
-//         nbr = nbr/base; 
-//     }
-//     while (isNegative)
-// 	{
-// 		str[i] = '-';
-// 		i++;
-// 	}
-//     str[i] = '\0';
-//     ft_strrev(str);
-//     return (str);
-// }
-
-//Reverse string
-char	*ft_strrev(char *str)
-{
-	char	rev;
-	int		len;
-	int		index;
-
-	len = ft_strlen(str);
-	index = 0;
-	while (index < len / 2)
+	
+	//Variable: Hexadecimal (base 16) + lowercase
+	if (str[1] == 'x')
 	{
-		rev = str[index];
-		str[index] = str[len - index - 1];
-		str[len - index - 1] = rev;
-		index++;
+		i = va_arg(arg, unsigned int);
+		ft_putnbr_base(i, 16);
+		ft_tolower(i);
 	}
-	return (str);
-}
+	
+	//Variable: Hexadecimal (base 16) + Uppercase
+	if (str[1] == 'X')
+	{
+		i = va_arg(arg, unsigned int);
+		ft_putnbr_base(i, 16);
+		ft_toupper(i);
+	}
+	
+	// Variable: Pointer (adress)
+	// if (str[1] == 'p')
+	// {
+	// 	i = va_arg(arg, void *);
+	// 	ft_putnbr_base( (unsigned long )i, 16);
+	// }
 
+	// // WIDTH OPTION
+	// if (ft_isdigit(str[1]) == 0)
+	// {
+	// 	return (ft_found_flag ())
+	// }
+}
 
 size_t	ft_strlen(const char *s)
 {
@@ -168,7 +150,7 @@ size_t	ft_strlen(const char *s)
 	return (index);
 }
 
-void	ft_putnbr(int n)
+void	ft_putnbr_base(int n, int base)
 {
 	if (n == -2147483648)
 	{
@@ -178,12 +160,12 @@ void	ft_putnbr(int n)
 	else if (n < 0)
 	{
 		ft_putchar('-');
-		ft_putnbr(-n);
+		ft_putnbr_base(-n, base);
 	}
 	else if (n > 9)
 	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
+		ft_putnbr_base(n / base, base);
+		ft_putnbr_base(n % base, base);
 	}
 	else
 	{
@@ -207,35 +189,16 @@ void	ft_putendl(char *s)
 	ft_putchar('\n');
 }
 
-// function to convert decimal to octal 
-void dec_to_octal(int n)
+int		ft_toupper(int c)
 {
-    // array to store octal number
-    int octalNum[100];
-
-    // counter for octal number array
-    int i = 0;
-    while (n != 0) 
-	{
-        // storing remainder in octal array 
-        octalNum[i] = n % 8;
-        n = n / 8;
-        i++;
-    }
-	i = 1;
-	while(i < n + 1) 
-	{
-    	// your current loop body goes here
-    	i++;
-	}
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	return (c);
 }
 
-// Driver program to test above function 
-int main() 
+int		ft_tolower(int c)
 {
-    int n = 33;
-
-    decToOctal(n);
-
-    return 0;
-} 
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	return (c);
+}

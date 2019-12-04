@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 17:45:49 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/03 13:23:38 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/04 17:26:32 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,21 @@ void 	net_printf(char *format, ...)
 }
 
 //Convert an integer number into octal, hex, etc.
-// char 	*convert(unsigned int num, int base)
-// {
-//     static char *representation;
-//     static char buffer[50];
-//     char *ptr;
+char 	*convert(unsigned int num, int base)
+{
+    static char *representation;
+    static char buffer[50];
+    char *ptr;
 
-//     representation = "0123456789ABCDEF";
-// 	ptr = &buffer[49];
-//     *ptr = '\0';
+    representation = "0123456789ABCDEF";
+	ptr = &buffer[49];
+    *ptr = '\0';
 
-//     while(num != 0)
-//     {
-//         *--ptr = representation[num%base]; 
-//         num /= base; 
-//     }
-//     return (ptr); 
-// }
+    while(num != 0)
+    {
+		*ptr -= 1;
+        *ptr = representation[num%base]; 
+        num /= base; 
+    }
+    return (ptr); 
+}

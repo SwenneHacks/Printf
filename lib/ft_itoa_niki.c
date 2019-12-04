@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 19:57:03 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/03 20:42:41 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/04 19:56:23 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,23 @@ int		main(void)
 		printf("base: %i, %s\n", i, ft_itoa_base(999, i, 'x'));
 		i++;	
 	}
+}
+
+//Reverse string ?
+char	*ft_strrev(char *str)
+{
+	char	rev;
+	int		len;
+	int		index;
+
+	len = ft_strlen(str);
+	index = 0;
+	while (index < len / 2)
+	{
+		rev = str[index];
+		str[index] = str[len - index - 1];
+		str[len - index - 1] = rev;
+		index++;
+	}
+	return (str);
 }
