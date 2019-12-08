@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_itoa_niki.c                                     :+:    :+:            */
+/*   ft_itoa_base.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/03 19:57:03 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/08 19:36:48 by swofferh      ########   odam.nl         */
+/*   Created: 2019/11/13 20:55:08 by swofferh       #+#    #+#                */
+/*   Updated: 2019/12/08 18:45:01 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	num_size(int n, int base)
+static int		num_size(int n, int base)
 {
 	int	i;
 
 	i = 1;
+	if (n == 0)
+		return (i);
 	if (n < 0)
 	{
 		i++;
@@ -42,7 +44,7 @@ static int	base_type(int n, int base, char c)
 	return (0);
 }
 
-char		*ft_itoa_base(long long n, int base, char c)
+static char		*ft_itoa_base(int n, int base, char c)
 {
 	int		len;
 	char	*str;

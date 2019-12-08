@@ -6,36 +6,34 @@
 /*   By: swofferh ,swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 20:55:08 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/03 18:59:45 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/08 17:07:47 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
 
 size_t	ft_strlen(const char *str);
 char 	*ft_strrev(char *str);
-void	ft_swap(int *a, int *b);
 
-char 	*ft_itoa_base(int nbr, char *str, int base) 
+char	*ft_itoa_base(int nbr, char *str, int base)
 {
-    int i = 0;
-	int convert;
+	int		i;
+	int		convert;
 
+	i = 0;
 	if (base == 10)
 		str = ft_itoa(nbr);
-    while (nbr != 0)
-    {
-        convert = nbr % base; 
-        str[i++] = (convert > 9)? (convert - 10) + 'a' : convert + '0'; 
-        nbr = nbr/base; 
-    }
-    str[i] = '\0';
-    ft_strrev(str);
-    return (str);
+	while (nbr != 0)
+	{
+		convert = nbr % base;
+		str[i + 1] = (convert > 9) ? (convert - 10) + 'a' : convert + '0';
+		nbr /= base;
+	}
+	str[i] = '\0';
+	ft_strrev(str);
+	return (str);
 }
 
-//Reverse string
 char	*ft_strrev(char *str)
 {
 	char	rev;
@@ -64,17 +62,16 @@ size_t	ft_strlen(const char *str)
 	return (index);
 }
 
-// Driver program to test implementation of itoa() 
-int main() 
-{ 
-    char str[100]; 
-    printf("Base:10 %s\n", ft_itoa_base(1567, str, 10)); 
-    printf("Base:10 %s\n", ft_itoa_base(-1567, str, 10)); 
-    printf("Base:2 %s\n", ft_itoa_base(1567, str, 2)); 
-    printf("Base:8 %s\n", ft_itoa_base(1567, str, 8)); 
-    printf("Base:16 %s\n", ft_itoa_base(1567, str, 16)); 
-    return 0; 
-} 
+int main(void)
+{
+    char str[100];
+    printf("Base:10 %s\n", ft_itoa_base(1567, str, 10));
+    printf("Base:10 %s\n", ft_itoa_base(-1567, str, 10));
+    printf("Base:2 %s\n", ft_itoa_base(1567, str, 2));
+    printf("Base:8 %s\n", ft_itoa_base(1567, str, 8));
+    printf("Base:16 %s\n", ft_itoa_base(1567, str, 16));
+    return 0;
+}
 
 // // Implementation of itoa_base() 
 // char 	*ft_itoa_base(int num, char *str, int base) 
