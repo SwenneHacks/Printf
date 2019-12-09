@@ -6,13 +6,13 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/30 18:00:18 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/08 21:35:41 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/09 16:37:20 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
-# include <unistd.h>
+#include <unistd.h>
 
 void	ft_putnbr(int n);
 void	ft_putchar(char c);
@@ -22,10 +22,11 @@ int		ft_toupper(int n);
 int		ft_tolower(int n);
 char 	*ft_strrev(char *str);
 size_t	ft_strlen(const char *s);
-void	ft_putnbr_hexa(unsigned long n, char c);
+void	ft_putnbr_base(unsigned long n, int base, char c);
 void	ft_found_percentage(char *str, va_list arg);
 char	*ft_itor_hexa(int n, int base, char c);
 void 	ft_printf(char *,...);
+
 /*
 ** MAN STDARG
 ** A function may be called with a varying number of arguments of varying types.
@@ -38,25 +39,26 @@ void 	ft_printf(char *,...);
 
 int 	main(void)
 {
-	char s[] = "I like turtles";
+	char *s = "I like turtles";
 	char c = 'o';
-	int n = 78;
+	int n = -78;
 	int *p = &n;
 	
-    ft_printf("String test: Hell%c %s!\n", c, s);
-	printf("String test: Hell%c %s!\n", c, s);
-	ft_printf("Hexa test: %d(base 10) %X(base 16)\n", n, n);
-	printf("Hexa test: %d(base 10) %X(base 16)\n", n, n);
-	// ft_printf("Unsigned test: %d (signed) %u (unsigned)\n", p, p);
-	// printf("Unsigned test: %d (signed) %u (unsigned)\n", p, p);
-	ft_printf("%p\n", p);
-	printf("%p\n", p);
+    ft_printf("strc test: Hell%c %s!\n", c, s);
+	printf("strc test: Hell%c %s!\n", c, s);
+	ft_printf("Sign test: %d (signed) %u (unsigned)\n", n, n);
+	printf("Sign test: %d (signed) %u (unsigned)\n", n, n);
+	ft_printf("Hexa test: %X (base 16)\n", n);
+	printf("Hexa test: %X (base 16)\n", n);
+	ft_printf("Octa test: %o (base 8)\n", n);
+	printf("Octa test: %o (base 8)\n", n);
+	ft_printf("Pointer test: %p\n", p);
+	printf("Pointer test: %p\n", p);
     return (0);
 }
 
 void 	ft_printf(char *str, ...)
 {
-   
 	unsigned int 	index;
 	va_list 		arg;
 
@@ -90,48 +92,52 @@ void	ft_found_percentage(char *str, va_list arg)
 		s = va_arg(arg, char *);		
 		ft_putstr(s);
 	}
-	
 	if (str[1] == 'c')							//Var: CHAR argument
 	{
 		i = va_arg(arg, int);			
 		ft_putchar(i);
-	}
-					
+	}		
 	if (str[1] == 'd' || str[1] == 'i')			//Var: Decimal/Integer (base 10)
 	{
 		i = va_arg(arg, int);  			 
         ft_putnbr(i);
 	}
-	
 	if (str[1] == 'u')							//Var: Unsigned int (decimal)
 	{
 		u = (unsigned int)va_arg(arg, unsigned int);  			 
-        ft_putnbr(u);
+        ft_putnbr_base(u, 10, 'u');
 	}
-	
+	if (str[1] == 'o')							//Var: Unsigned int (octal)
+	{
+		u = (unsigned int)va_arg(arg, unsigned int);  			 
+        ft_putnbr_base(u, 8, 'o');
+	}
 	if (str[1] == 'p')							//Var: Pointer (adress)
 	{
 		h = (unsigned long)va_arg(arg, void *);
 		ft_putstr("0x");
-		ft_putnbr_hexa(h, 'x');
+		ft_putnbr_base(h, 16, 'x');
 	}
 	if (str[1] == 'x')							//Var: Hexadecimal (base 16) + lowercase
 	{
 		h = va_arg(arg, unsigned int);
-		ft_putnbr_hexa(h, 'x');
+		ft_putnbr_base(h, 16, 'x');
 	}
-	
 	if (str[1] == 'X')							//Var: Hexadecimal (base 16) + Uppercase
 	{
 		h = va_arg(arg, unsigned int);
-			ft_putnbr_hexa(h, 'X');
-			ft_toupper((int)h);
+		ft_putnbr_base(h, 16, 'X');
+		ft_toupper((int)h);
 	}
-	
-	// // WIDTH OPTION
 	// if (ft_isdigit(str[1]) == 0)
 	// {
 	// 	return (ft_found_flag ());
+	// }
+	// if (str[1] == '+')
+	// {
+	// 	i = va_arg(arg, int);
+	// 	if (i > 0)
+	// 		ft_putchar('+');
 	// }
 }
 
@@ -145,13 +151,6 @@ size_t	ft_strlen(const char *s)
 	return (index);
 }
 
-int		ft_adjust(char c, int offset)
-{
-	if (c > '9')
-		return (offset - (int)'0' - 10);
-	return (0);
-}
-
 void	ft_putnbr(int n)
 {
 	if (n == -2147483648)
@@ -159,33 +158,34 @@ void	ft_putnbr(int n)
 		ft_putstr("-2147483648");
 		return ;
 	}
-	if (n < 0)
+	else if (n < 0)
 	{
 		ft_putchar('-');
 		ft_putnbr(-n);
 	}
-	if (n > 9)
+	else if (n > 9)
 	{
 		ft_putnbr(n / 10);
 		ft_putnbr(n % 10);
 	}
 	else
 		ft_putchar(n % 10 + '0');
+	return ;
 }
 
-void	ft_putnbr_hexa(unsigned long n, char c)
+void	ft_putnbr_base(unsigned long n, int base, char c)
 {
 	if (n > 15)
 	{
-		ft_putnbr_hexa(n / 16, c);
-		ft_putnbr_hexa(n % 16, c);
+		ft_putnbr_base(n / base, base, c);
+		ft_putnbr_base(n % base, base, c);
 	}
 	else if (n > 9 && c == 'x')
 		ft_putchar(n + 87);
 	else if (n > 9 && c == 'X')
 		ft_putchar(n + 55);
 	else
-		ft_putchar(n % 16 + '0');
+		ft_putchar(n % base + '0');
 }
 
 void	ft_putchar(char c)
