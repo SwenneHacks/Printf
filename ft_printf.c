@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/30 18:00:18 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/09 16:37:20 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/10 17:15:55 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int 	main(void)
 {
 	char *s = "I like turtles";
 	char c = 'o';
-	int n = -78;
+	int n = 78;
 	int *p = &n;
 	
     ft_printf("strc test: Hell%c %s!\n", c, s);

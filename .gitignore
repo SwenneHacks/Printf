@@ -1,5 +1,5 @@
-.DS_Store
-.vscode
-a.out
-a.out.dSYM
-libft
+*
+!*.c
+!*.h
+!Makefile
+!.gitignore
