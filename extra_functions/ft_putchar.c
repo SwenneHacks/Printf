@@ -1,12 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_check_flags.c                                   :+:    :+:            */
+/*   ft_putchar_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/13 15:06:14 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/13 15:06:15 by swofferh      ########   odam.nl         */
+/*   Created: 2019/11/08 13:05:21 by swofferh       #+#    #+#                */
+/*   Updated: 2019/11/30 22:39:14 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
