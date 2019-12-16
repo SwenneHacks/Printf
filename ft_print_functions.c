@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:50:57 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/13 15:26:54 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/16 20:25:30 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,30 @@ void	ft_putnbr(int n)
 	return ;
 }
 
-void	ft_putnbr_base(unsigned long n, int base, char c)
+void	ft_putnbr_octa(unsigned long n)
+{
+	if (n > 7)
+	{
+		ft_putnbr_octa(n / 8);
+		ft_putnbr_octa(n % 8);
+	}
+	else
+		ft_putchar(n % 8 + '0');
+}
+
+void	ft_putnbr_hexa(unsigned long n, char c)
 {
 	if (n > 15)
 	{
-		ft_putnbr_base(n / base, base, c);
-		ft_putnbr_base(n % base, base, c);
+		ft_putnbr_hexa(n / 16, c);
+		ft_putnbr_hexa(n % 16, c);
 	}
 	else if (n > 9 && c == 'x')
 		ft_putchar(n + 87);
 	else if (n > 9 && c == 'X')
 		ft_putchar(n + 55);
 	else
-		ft_putchar(n % base + '0');
+		ft_putchar(n % 16 + '0');
 }
 
 void	ft_putchar(char c)

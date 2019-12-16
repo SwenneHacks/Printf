@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:55:41 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/13 15:32:29 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/16 20:26:31 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_check_conversions(char *str, va_list arg)
 	if (str[1] == 'u')
 	{
 		u = (unsigned int)va_arg(arg, unsigned int);  			 
-        ft_putnbr_base(u, 10, 'u');
+        ft_putnbr(u);
 	}
 /*
 **														Octa (base 8)
@@ -56,7 +56,7 @@ void	ft_check_conversions(char *str, va_list arg)
 	if (str[1] == 'o')
 	{
 		u = (unsigned int)va_arg(arg, unsigned int);  			 
-        ft_putnbr_base(u, 8, 'o');
+        ft_putnbr_octa(u);
 	}
 /*
 **														Pointer (adress)
@@ -65,7 +65,7 @@ void	ft_check_conversions(char *str, va_list arg)
 	{
 		h = (unsigned long)va_arg(arg, void *);
 		ft_putstr("0x");
-		ft_putnbr_base(h, 16, 'x');
+		ft_putnbr_hexa(h, 'x');
 	}
 /*
 **														Hexa (base 16) lowercase
@@ -73,7 +73,7 @@ void	ft_check_conversions(char *str, va_list arg)
 	if (str[1] == 'x')
 	{
 		h = va_arg(arg, unsigned int);
-		ft_putnbr_base(h, 16, 'x');
+		ft_putnbr_hexa(h, 'x');
 	}
 /*
 **														Hexa (base 16) Uppercase
@@ -81,7 +81,7 @@ void	ft_check_conversions(char *str, va_list arg)
 	if (str[1] == 'X')
 	{
 		h = va_arg(arg, unsigned int);
-		ft_putnbr_base(h, 16, 'X');
+		ft_putnbr_hexa(h, 'X');
 		ft_toupper((int)h);
 	}
 }
