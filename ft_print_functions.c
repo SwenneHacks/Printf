@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:50:57 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/16 20:25:30 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/18 15:25:44 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,56 @@ void	ft_putnbr_hexa(unsigned long n, char c)
 		ft_putchar(n % 16 + '0');
 }
 
+size_t	ft_nbrlenbase(long long nbr, int base)
+{
+	size_t len;
+
+	len = 1;
+	if (nbr < 0)
+		len++;
+	if (base == 1)
+	{
+		if (nbr < 0)
+			nbr = nbr * -1;
+		return ((size_t)nbr + len);
+	}
+	while (nbr / base != 0)
+	{
+		len++;
+		nbr /= base;
+	}
+	return (len);
+}
+
+int	ft_atoi(const char *str)
+{
+	unsigned long	result;
+	int				i;
+	int				sign;
+
+	result = 0;
+	i = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (result >= 9223372036854775807 && sign == -1)
+			return (0);
+		if (result >= 9223372036854775807 && sign == 1)
+			return (-1);
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
+}
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -98,4 +148,9 @@ int		ft_tolower(int c)
 	if (c >= 65 && c <= 90)
 		return (c + 32);
 	return (c);
+}
+
+int		ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
 }

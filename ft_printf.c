@@ -6,13 +6,13 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/30 18:00:18 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/16 19:23:47 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/17 21:24:07 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void 	ft_printf(char *str, ...)
+void 	ft_printf(const char *str, ...)
 {
 	unsigned int 	index;
 	va_list 		arg;

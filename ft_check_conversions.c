@@ -6,28 +6,28 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:55:41 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/16 20:26:31 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/18 15:17:17 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_check_conversions(char *str, va_list arg)
+void	ft_check_conversions(const char *str, va_list arg)
 {
 	char 			*s;
 	int				i;
 	unsigned int	u;
 	unsigned long	h;
 /*
-**														STRING argument
+**	STRING argument
 */
-	if (str[1] == 's')//
+	if (str[1] == 's')
 	{
 		s = va_arg(arg, char *);
 		ft_putstr(s);
 	}
 /*
-**														CHAR argument
+**	CHAR argument
 */
 	if (str[1] == 'c')
 	{
@@ -35,7 +35,7 @@ void	ft_check_conversions(char *str, va_list arg)
 		ft_putchar(i);
 	}
 /*
-**														Decimal/Integer (base 10)
+**	Decimal/Integer (base 10)
 */
 	if (str[1] == 'd' || str[1] == 'i')
 	{
@@ -43,7 +43,7 @@ void	ft_check_conversions(char *str, va_list arg)
         ft_putnbr(i);
 	}
 /*
-**														Unsigned int (decimal)
+**	Unsigned int (decimal)
 */
 	if (str[1] == 'u')
 	{
@@ -51,7 +51,7 @@ void	ft_check_conversions(char *str, va_list arg)
         ft_putnbr(u);
 	}
 /*
-**														Octa (base 8)
+**	Octa (base 8)
 */
 	if (str[1] == 'o')
 	{
@@ -59,7 +59,7 @@ void	ft_check_conversions(char *str, va_list arg)
         ft_putnbr_octa(u);
 	}
 /*
-**														Pointer (adress)
+**	Pointer (adress)
 */
 	if (str[1] == 'p')
 	{
@@ -68,7 +68,7 @@ void	ft_check_conversions(char *str, va_list arg)
 		ft_putnbr_hexa(h, 'x');
 	}
 /*
-**														Hexa (base 16) lowercase
+**	Hexa (base 16) lowercase
 */
 	if (str[1] == 'x')
 	{
@@ -76,7 +76,7 @@ void	ft_check_conversions(char *str, va_list arg)
 		ft_putnbr_hexa(h, 'x');
 	}
 /*
-**														Hexa (base 16) Uppercase
+**	Hexa (base 16) Uppercase
 */
 	if (str[1] == 'X')
 	{
@@ -85,4 +85,3 @@ void	ft_check_conversions(char *str, va_list arg)
 		ft_toupper((int)h);
 	}
 }
-
