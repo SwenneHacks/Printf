@@ -6,20 +6,29 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 17:10:52 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/18 15:28:01 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/21 21:16:24 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
 
+# include "libft/libft.h"
+# include <stdarg.h>
+/*
+** 	Testing inclusions
+*/
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-# include <stdarg.h>
-
-enum				e_flags
+/*
+**	enumerations for the flags and modifiers stored in lenmod and flags.
+**	these are written down here as bitshifts, but in essence the exact number
+**	linked to an enum is not relevant, just that we can uniquely store and
+**	fetch any option (flag or modifier)
+*/
+enum				e_flags 
 {
 	e_plus = 1 << 0,
 	e_left = 1 << 1,
@@ -28,23 +37,35 @@ enum				e_flags
 	e_space = 1 << 4,
 	e_middle = 1 << 5
 };
-
+/*
+**					this info struct contains anything that we might need to print.
+*/
 typedef struct		s_info
 {
-	va_list			arguments; 	//Va_list with all the arguments that printf received.
-	unsigned char	conversion; //Contains the char representing the conversion specifier.
-	unsigned char	flags; 		//Uses the above mentioned enums to store flags.
-	unsigned long	u_numlen; 	//Adds up the total amount of characters printed as a return value.
-	int				precision;	//Positive if a precision was found, negative if it was not.
-	int				width;		//Simple value representing the width provided.
-	char			type;		//Type of precision provided
-	int				size;		//Size of precision
-	int				sign;		//Used to specify if a number is positive or negative.
+	va_list			arg; 	//Va_list with all the arguments that printf received.
+	unsigned char	conv; 	//Contains the char representing the conversion specifier.
+	unsigned char	flags; 	//Uses the above mentioned enums to store flags.
+	unsigned long	length;	//Adds up total amount of characters as a return value.
+	int				preci;	//Positive if a precision was found, negative if it not.
+	int				width;	//Simple value representing the width provided.
+	char			type;	//Type of precision provided
+	int				size;	//Size of precision
+	int				sign;	//Used to specify if a number is positive or negative.
 }					t_info;
 
+typedef struct		s_thimo
+{
+	int 			width;
+	int 			pres;
+	int				count;
+	int 			padding;
+	char 			conversion;
+}					t_thimo;
+
 void 				ft_printf(const char *, ...);
-void				ft_check_conversions(const char *str, va_list arg);
-int					ft_check_flags(const char *str, t_info *info);
+int					ft_percentage(const char *str, t_info *info);
+char				ft_conversions(const char conversion);
+int					ft_flags(const char *str, t_info *info);
 int					ft_find_flags(const char *str, t_info *info, int i);
 int					ft_find_width(const char *str, t_info *info, int i);
 int					ft_find_precision(const char *str, t_info *info, int i);

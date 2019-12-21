@@ -6,24 +6,34 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 15:06:14 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/18 15:08:07 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/21 20:37:09 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_check_flags(const char *str, t_info *info)
-{
-	int i;
+// t_flag *check_conversion(bla bla)
+// {
+// 	if (traverse == *)
+// 		conversion->width = va_arg(int)
+// 		traverse++;
+// 	if (traverse => '0' && traverse <= '9')
+// 		conversion->width = ft_atoi(traverse)
+// 		traverse++;
+// }
 
-	i = 1;
+int		ft_flags(const char *str, t_info *info)
+{
+	int index;
+
+	index = 1;
 	info->flags = 0;
 	info->width = 0;
-	info->precision = 0;
+	info->type = 0;
 	info->precision = -1;
-	i = ft_find_flags(str, info, i);
-	i = ft_find_width(str, info, i);
-	i = ft_find_precision(str, info, i);
+	index = ft_find_flags(str, info, index);
+	index = ft_find_width(str, info, index);
+	index = ft_find_precision(str, info, index);
 	return (i);
 }
 
@@ -67,7 +77,7 @@ int		ft_find_precision(const char *str, t_info *info, int i)
 			i++;
 		}
 		else
-			info->type= ft_atoi(&str[i]);
+			info->type= ft_atoi(str + i);
 		while (ft_isdigit(str[i]) == 1)
 			i++;
 	}
@@ -83,7 +93,7 @@ int		ft_find_width(const char *str, t_info *info, int i)
 	nb = 0;
 	if (str[i] == '*')
 	{
-		nb = va_arg(info->arguments, int);
+		thimo->width  = va_arg(info->arguments, int);
 		if (nb < 0)
 		{
 			info->flags |= e_left;
@@ -93,7 +103,7 @@ int		ft_find_width(const char *str, t_info *info, int i)
 	}
 	else
 	{
-		nb = ft_atoi(&str[i]);
+		nb = ft_atoi(str + i);
 		if (nb > 0)
 		{
 			i += ft_nbrlenbase(nb, 10);

@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:50:57 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/18 15:25:44 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/19 17:24:22 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,4 +153,10 @@ int		ft_tolower(int c)
 int		ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
+}
+
+int	ft_iswhitespace(char c)
+{
+	return(c == '\n' || c == '\t' || c == ' ' ||
+		c == '\v' || c == '\f' || c == '\r');
 }

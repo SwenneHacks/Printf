@@ -6,7 +6,7 @@
 #    By: swofferh <swofferh@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/16 17:46:43 by swofferh       #+#    #+#                 #
-#    Updated: 2019/12/18 15:24:44 by swofferh      ########   odam.nl          #
+#    Updated: 2019/12/19 17:35:22 by swofferh      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC = printf.h
 LIBDIR = libft
 LIBNAME = libft.a
 
-SRC = ft_printf.c ft_check_conversions.c ft_print_functions.c ft_check_flags.c \
+SRC = ft_printf.c ft_print_functions.c #ft_check_flags.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -52,7 +52,7 @@ library:
 test: $(NAME)
 	gcc $(TEST) -L. -lftprintf -Ilibft -Llibft -lft -g -fsanitize=address
 	@echo ""
-	@./test
+	@./test 
 
 add:
 	git add $(SRC) Makefile $(INC) $(BONUS)
