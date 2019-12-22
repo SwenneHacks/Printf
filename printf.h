@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 17:10:52 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/21 21:16:24 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/22 19:56:46 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ enum				e_flags
 */
 typedef struct		s_info
 {
-	va_list			arg; 	//Va_list with all the arguments that printf received.
-	unsigned char	conv; 	//Contains the char representing the conversion specifier.
-	unsigned char	flags; 	//Uses the above mentioned enums to store flags.
-	unsigned long	length;	//Adds up total amount of characters as a return value.
-	int				preci;	//Positive if a precision was found, negative if it not.
-	int				width;	//Simple value representing the width provided.
-	char			type;	//Type of precision provided
-	int				size;	//Size of precision
-	int				sign;	//Used to specify if a number is positive or negative.
+	va_list			arguments; 		//Va_list with all the arguments that printf received.
+	unsigned char	conversion; 	//Contains the char representing the conversion specifier.
+	unsigned char	flags; 			//Uses the above mentioned enums to store flags.
+	unsigned long	length;			//Adds up total amount of characters as a return value.
+	int				precision;		//Positive if a precision was found, negative if it not.
+	int				width;			//Simple value representing the width provided.
+	char			type;			//Type of precision provided
+	int				size;			//Size of precision
+	int				sign;			//Used to specify if a number is positive or negative.
 }					t_info;
 
 typedef struct		s_thimo

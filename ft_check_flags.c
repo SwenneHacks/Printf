@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 15:06:14 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/21 20:37:09 by swofferh      ########   odam.nl         */
+/*   Updated: 2019/12/22 21:39:06 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // 		traverse++;
 // }
 
-int		ft_flags(const char *str, t_info *info)
+int		ft_check_flags(const char *str, t_info *info)
 {
 	int index;
 
@@ -35,6 +35,19 @@ int		ft_flags(const char *str, t_info *info)
 	index = ft_find_width(str, info, index);
 	index = ft_find_precision(str, info, index);
 	return (i);
+}
+
+t_flags	ft_flags_table(char c)
+{
+	static const t_flags ascii[128] = {
+		['+'] = &ft_flags_plus,
+		['-'] = &ft_flags_left,
+		[' '] = &ft_flags_space,
+		['0'] = &ft_flags_zero,
+		['#'] = &ft_flags_hash,
+		['^'] = &ft_flags_middle,
+	};
+	return (ascii[c]);
 }
 
 int		ft_find_flags(const char *str, t_info *info, int i)
