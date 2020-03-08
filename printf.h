@@ -5,86 +5,48 @@
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/28 17:10:52 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/22 19:56:46 by swofferh      ########   odam.nl         */
+/*   Created: 2020/01/08 22:27:52 by swofferh       #+#    #+#                */
+/*   Updated: 2020/03/08 22:37:42 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
 
-# include "libft/libft.h"
 # include <stdarg.h>
-/*
-** 	Testing inclusions
-*/
-# include <unistd.h>
-# include <stdlib.h>
 # include <stdio.h>
-# include <string.h>
-/*
-**	enumerations for the flags and modifiers stored in lenmod and flags.
-**	these are written down here as bitshifts, but in essence the exact number
-**	linked to an enum is not relevant, just that we can uniquely store and
-**	fetch any option (flag or modifier)
-*/
-enum				e_flags 
-{
-	e_plus = 1 << 0,
-	e_left = 1 << 1,
-	e_hash = 1 << 2,
-	e_zero = 1 << 3,
-	e_space = 1 << 4,
-	e_middle = 1 << 5
-};
-/*
-**					this info struct contains anything that we might need to print.
-*/
-typedef struct		s_info
-{
-	va_list			arguments; 		//Va_list with all the arguments that printf received.
-	unsigned char	conversion; 	//Contains the char representing the conversion specifier.
-	unsigned char	flags; 			//Uses the above mentioned enums to store flags.
-	unsigned long	length;			//Adds up total amount of characters as a return value.
-	int				precision;		//Positive if a precision was found, negative if it not.
-	int				width;			//Simple value representing the width provided.
-	char			type;			//Type of precision provided
-	int				size;			//Size of precision
-	int				sign;			//Used to specify if a number is positive or negative.
-}					t_info;
+# include <unistd.h>
+# include "libft/libft.h"
 
-typedef struct		s_thimo
-{
-	int 			width;
-	int 			pres;
-	int				count;
-	int 			padding;
-	char 			conversion;
-}					t_thimo;
+va_list	g_ap;
+int		g_return;
+int		g_flag;
+int		g_minfield;
+int		g_period;
+int		g_maxfield;
+char	g_argument;
 
-void 				ft_printf(const char *, ...);
-int					ft_percentage(const char *str, t_info *info);
-char				ft_conversions(const char conversion);
-int					ft_flags(const char *str, t_info *info);
-int					ft_find_flags(const char *str, t_info *info, int i);
-int					ft_find_width(const char *str, t_info *info, int i);
-int					ft_find_precision(const char *str, t_info *info, int i);
-/*
-** 					Libft functions
-*/
-int					ft_atoi(const char *str);
-int					ft_isdigit(int c);
-/*
-** 					Extra functions (outside libft)
-*/
-void				ft_putnbr(int n);
-void				ft_putchar(char c);
-void				ft_putstr(char *s);
-void				ft_putendl(char *s);
-int					ft_toupper(int n);
-int					ft_tolower(int n);
-void				ft_putnbr_octa(unsigned long n);
-void				ft_putnbr_hexa(unsigned long n, char c);
-size_t				ft_nbrlenbase(long long nbr, int base);
+int		ft_vabs(int nbr);
+int		ft_atoi(const char *str);
+int		ft_isdigit_signed(int c);
+size_t	ft_strlen(const char *str);
+void	init_globalv(void);
+int		ft_calcnbr(int nbr, unsigned long binf, unsigned long bsup);
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+void	ft_putnbr(int n);
+int		ft_putchar_while(char c, int i);
+void	ft_c_argument(void);
+void	ft_s_argument(void);
+void	ft_d_argument(void);
+int		ft_checkpercent(const char *str);
+int		ft_printf(const char *str, ...);
+int		ft_checkflags(const char *str);
+int		ft_checkmaxfield(const char *str);
+int		ft_checkperiod_maxfield(const char *str);
+int		ft_go_to_argument(char g_argument);
+int		ft_checkminfield(const char *str);
+int		ft_checkargument(const char *str);
+int		ft_check_after_percent(const char *str);
 
 #endif

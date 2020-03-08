@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_check_conversions.c                             :+:    :+:            */
+/*   ft_conversions.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/19 20:49:42 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/22 21:36:14 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/02/10 18:25:18 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void ft_check_conversions(va_list arguments, t_list *info, char c)
 	return ;
 }
 
-t_conversions	ft_conversions(char c)
+t_conversions	ft_conversions_table(char c)
 {
 	static const t_conversions ascii[128] = {
 		['c'] = &ft_convert_c,

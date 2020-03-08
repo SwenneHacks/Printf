@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_print_functions.c                               :+:    :+:            */
+/*   ft_utils.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:50:57 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/19 17:24:22 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/03/08 19:41:03 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,22 @@ int	ft_atoi(const char *str)
 	return (sign * result);
 }
 
+int		ft_putwhile(char c, int i)
+{
+	if (i < 0)
+		return (0);
+	while (i)
+	{
+		ft_putchar(c);
+		i--;
+	}
+	return (0);
+}
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	g_return_value++;
 }
 
 void	ft_putstr(char *s)
@@ -157,6 +170,19 @@ int		ft_isdigit(int c)
 
 int	ft_iswhitespace(char c)
 {
-	return(c == '\n' || c == '\t' || c == ' ' ||
+	return (c == '\n' || c == '\t' || c == ' ' ||
 		c == '\v' || c == '\f' || c == '\r');
+}
+
+int		ft_negative(int nbr)
+{
+	if (nbr < 0)
+		return (nbr * -1);
+	else
+		return (nbr);
+}
+
+int		ft_isdigit_signed(int c)
+{
+	return ((c <= 57 && c >= 48) || (c == '-') || (c == '+'))
 }

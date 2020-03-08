@@ -6,11 +6,11 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 13:50:57 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/19 17:48:10 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/03/08 19:08:57 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print.h"
+#include "printf.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -157,6 +157,43 @@ int		ft_isdigit(int c)
 
 int	ft_iswhitespace(char c)
 {
-	return(c == '\n' || c == '\t' || c == ' ' ||
+	return (c == '\n' || c == '\t' || c == ' ' ||
 		c == '\v' || c == '\f' || c == '\r');
 }
+
+// int		ft_write(t_info *info, char c)
+// {
+// 	info->len = 1;
+// 	if (c == '\0')
+// 		return (0);
+// 	if ((info->flags) != 0)
+// 	{
+// 		write(1, &c, 1);
+// 		ft_write_width(info, 1);
+// 	}
+// 	else
+// 	{
+// 		ft_write_width(info, 1);
+// 		write(1, &c, 1);
+// 	}
+// 	return (0);
+// }
+
+// void		t_write_width(t_info *info, size_t src_len)
+// {
+// 	size_t		len;
+
+// 	len = 0;
+// 	if (info->width > 0 && info->width > src_len)
+// 	{
+// 		len = info->width - src_len;
+// 		while (len > 0)
+// 		{
+// 			if ((info->flags & e_zero) != 0)
+// 				write(1, "0", 1);
+// 			else
+// 				write(1, " ", 1);
+// 			len--;
+// 		}
+// 	}
+// }

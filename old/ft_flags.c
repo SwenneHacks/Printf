@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_check_flags.c                                   :+:    :+:            */
+/*   ft_flags.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 15:06:14 by swofferh       #+#    #+#                */
-/*   Updated: 2019/12/22 21:39:06 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/28 17:04:19 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int		ft_check_flags(const char *str, t_info *info)
 	info->precision = -1;
 	index = ft_find_flags(str, info, index);
 	index = ft_find_width(str, info, index);
-	index = ft_find_precision(str, info, index);
-	return (i);
+	index = ft_find_preci(str, info, index);
+	return (index);
 }
 
 t_flags	ft_flags_table(char c)
@@ -55,17 +55,17 @@ int		ft_find_flags(const char *str, t_info *info, int i)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '+')
-			info->flags |= e_plus;
+			info->flags |= PLUS
 		else if (str[i] == '-')
-			info->flags |= e_left;
+			info->flags |= LEFT;
 		else if (str[i] == ' ')
-			info->flags |= e_space;
+			info->flags |= SPACE;
 		else if (str[i] == '0')
-			info->flags |= e_zero;
+			info->flags |= ZERO;
 		else if (str[i] == '#')
-			info->flags |= e_hash;
+			info->flags |= HASH;
 		else if (str[i] == '^')
-			info->flags |= e_middle;
+			info->flags |= MIDDLE;
 		else
 			return (i);
 		i++;
@@ -90,7 +90,7 @@ int		ft_find_precision(const char *str, t_info *info, int i)
 			i++;
 		}
 		else
-			info->type= ft_atoi(str + i);
+			info->type = ft_atoi(str + i);
 		while (ft_isdigit(str[i]) == 1)
 			i++;
 	}
@@ -106,7 +106,7 @@ int		ft_find_width(const char *str, t_info *info, int i)
 	nb = 0;
 	if (str[i] == '*')
 	{
-		thimo->width  = va_arg(info->arguments, int);
+		thimo->width = va_arg(info->arguments, int);
 		if (nb < 0)
 		{
 			info->flags |= e_left;

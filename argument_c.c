@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putendl_fd.c                                    :+:    :+:            */
+/*   argument_c.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/08 14:33:29 by swofferh       #+#    #+#                */
-/*   Updated: 2019/11/30 22:32:24 by swofferh      ########   odam.nl         */
+/*   Created: 2020/01/08 22:31:04 by swofferh       #+#    #+#                */
+/*   Updated: 2020/03/08 22:32:15 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-void	ft_putendl(char *s)
+void	ft_c_argument(void)
 {
-	if (s == NULL)
-		return ;
-	ft_putstr(s);
-	ft_putchar('\n');
+	char	c;
+
+	c = va_arg(g_ap, int);
+	if (g_flag == -1 && !g_minfield)
+		ft_putchar(c);
+	if ((g_minfield != 1 && g_flag == 1))
+	{
+		ft_putchar(c);
+		ft_putchar_while(' ', (ft_vabs(g_minfield) - 1));
+	}
+	else if (g_flag == -1 && g_minfield > 0)
+	{
+		ft_putchar_while(' ', g_minfield - 1);
+		ft_putchar(c);
+	}
 }
