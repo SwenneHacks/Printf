@@ -19,13 +19,13 @@ int		ft_printf(const char *str, ...)
 
 	i = 0;
 	len = ft_strlen(str);
-	va_start(g_ap, str);
+	va_start(g_argument, str);
 	init_globalv();
 	while (str[i] != '\0' && i < len)
 	{
 		if (str[i] == '%' && str[i] != '\0')
 		{
-			i += ft_checkpercent(str + i);
+			i += ft_percentage(str + i);
 		}
 		if (str[i] != '%' && str[i] != '\0')
 		{
@@ -33,34 +33,6 @@ int		ft_printf(const char *str, ...)
 		}
 		i++;
 	}
-	va_end(g_ap);
+	va_end(g_argument);
 	return (g_return);
-}
-
-int		main(void)
-{
-	unsigned int	i = -7;
-	char			c = 'a';
-	char			*s = "Hi";
-
-	ft_putchar('\n');
-	printf("% d\n", i);
-	ft_printf("% d\n", i);
-	ft_putchar('\n');
-	printf("%05d\n", i);
-	ft_printf("%05d\n", i);
-	ft_putchar('\n');
-	printf("%c\n", c);
-	ft_printf("%c\n", c);
-	ft_putchar('\n');
-	printf("%5s\n", s);
-	ft_printf("%5s\n", s);
-	ft_putchar('\n');
-	printf("%-5s\n", s);
-	ft_printf("%-5s\n", s);
-	ft_putchar('\n');
-	printf("%x\n", i);
-	ft_printf("%x\n", i);
-	ft_putchar('\n');
-	return (0);
 }
