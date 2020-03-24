@@ -57,7 +57,7 @@ For %c type:'
 >It has no effect. When no precision is specified, the default is 1.
 >If the period is specified without an explicit value for precision, 0 is assumed.
 
-**[. *]**
+[. *]
 > The precision is not specified in the format string, but as an additional argument (value int) preceding the argument that has to be formatted. 
 The result is padded with space characters (by default), if required, on the left when right-justified, or on the right if left-justified.
 
@@ -69,16 +69,16 @@ The result is padded with space characters (by default), if required, on the lef
 sSpdDioOuUxXcCbneEfFgGaA
 ```
 
-c - Character
-s - String of Characters (null-terminated).
-d - Signed Decimal Number (base 10)
-i - Signed integer. (base 10)
-u - Unsigned Decimal Number (base 10)
-o - Signed Octal Number (base 8)
-x - Unsigned Hexadecimal (base 16)
-X - Caption Letters Hexadecimal (base 16)
-p - Pointer Address (base 16 - without ox)
-%% - Prints a literal % character (this type doesn't accept any flags, width, precision, length fields).
+*. c - Character
+*. s - String of Characters (null-terminated)
+*. d - Signed Decimal Number (base 10)
+*. i - Signed integer. (base 10)
+*. u - Unsigned Decimal Number (base 10)
+*. o - Signed Octal Number (base 8)
+*. x - Unsigned Hexadecimal (base 16)
+*. X - Caption Letters Hexadecimal (base 16)
+*. p - Pointer Address (base 16 - without ox)
+*. %% - Prints a literal % character (this type doesn't accept any flags, width, precision, length fields).
 
 extra
 
@@ -90,13 +90,13 @@ f - Decimal Float Point
 
 The following character sequences can be used for special formats (standard ASCII values):
 
-\a - audible alert
-\b - backspace
-\f - form feed
-\n - newline
-\r - carriage return
-\t - tab
-\v - vertical tab
-\\ - backslash
+- \a - audible alert
+- \b - backspace
+- \f - form feed
+- \n - newline
+- \r - carriage return
+- \t - tab
+- \v - vertical tab
+- \\ - backslash
 
 
