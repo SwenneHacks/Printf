@@ -69,16 +69,16 @@ The result is padded with space characters (by default), if required, on the lef
 sSpdDioOuUxXcCbneEfFgGaA
 ```
 
-*. c - Character
-*. s - String of Characters (null-terminated)
-*. d - Signed Decimal Number (base 10)
-*. i - Signed integer. (base 10)
-*. u - Unsigned Decimal Number (base 10)
-*. o - Signed Octal Number (base 8)
-*. x - Unsigned Hexadecimal (base 16)
-*. X - Caption Letters Hexadecimal (base 16)
-*. p - Pointer Address (base 16 - without ox)
-*. %% - Prints a literal % character (this type doesn't accept any flags, width, precision, length fields).
+- c - Character
+- s - String of Characters (null-terminated)
+- d - Signed Decimal Number (base 10)
+- i - Signed integer. (base 10)
+- u - Unsigned Decimal Number (base 10)
+- o - Signed Octal Number (base 8)
+- x - Unsigned Hexadecimal (base 16)
+- X - Caption Letters Hexadecimal (base 16)
+- p - Pointer Address (base 16 - without ox)
+- %% - Prints a literal % character (this type doesn't accept any flags, width, precision, length fields).
 
 extra
 
