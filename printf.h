@@ -51,6 +51,8 @@ void	ft_c_argument(void);
 void	ft_s_argument(void);
 void	ft_d_argument(void);
 void	ft_x_argument(void);
+void	ft_p_argument(void);
+void	ft_u_argument(void);
 void	init_globalv(void);
 int		ft_maxfield(const char *str);
 int		ft_precision(const char *str);

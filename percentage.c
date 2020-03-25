@@ -183,6 +183,10 @@ int		ft_conversion(char g_conversion)
 		ft_s_argument();
 	else if (g_conversion == 'x' || g_conversion == 'X')
 		ft_x_argument();
+	else if (g_conversion == 'p')
+		ft_p_argument();
+	else if (g_conversion == 'u' || g_conversion == 'o')
+		ft_u_argument();
 	i++;
 	return (i);
 }
