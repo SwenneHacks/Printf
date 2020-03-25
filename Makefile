@@ -16,12 +16,14 @@ FLAGS = -Wall -Wextra -Werror
 TEST = test.c
 
 SRC = ft_printf.c \
-print_utils.c \
+functions.c \
 percentage.c \
 conversion_s.c \
 conversion_d.c \
 conversion_c.c \
 conversion_x.c \
+conversion_p.c \
+conversion_u.c \
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -52,9 +54,9 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: $(NAME)
-	gcc $(TEST) $(NAME) -o test 
+	gcc $(FLAGS) $(TEST) $(NAME) -o test 
 	@echo ""
-	@./test | cat -e
+	@./test
 
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
