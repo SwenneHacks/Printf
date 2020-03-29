@@ -15,15 +15,15 @@ INC = printf.h
 FLAGS = -Wall -Wextra -Werror
 TEST = test.c
 
-SRC = ft_printf.c \
-functions.c \
-percentage.c \
-conversion_s.c \
-conversion_d.c \
-conversion_c.c \
-conversion_x.c \
-conversion_p.c \
-conversion_u.c \
+SRC = 	src/ft_printf.c \
+		src/functions.c \
+		src/percentage.c \
+		arg/type_s.c \
+		arg/type_d.c \
+		arg/type_c.c \
+		arg/type_x.c \
+		arg/type_p.c \
+		arg/type_u.c \
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -33,6 +33,8 @@ $(NAME): $(OBJ)
 	@echo ""
 	@ar rcs $@ $^
 	@ranlib $(NAME)
+	@mkdir obj
+	@mv $(OBJ) obj
 	@echo "~~~~ Done creating printf.a \n"
 	
 %.o: %.c
@@ -40,7 +42,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) -I $(INC) -c $< -o $@
 	
 clean:
-	@$(RM) $(OBJ)
+	@rm -rf obj
 	@echo "Removing $@"
 	@$(RM) a.out test
 	@echo "~~~~ Done Cleaning \n"
@@ -53,7 +55,7 @@ fclean: clean
 re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
-test: $(NAME)
+test: re
 	gcc $(FLAGS) $(TEST) $(NAME) -o test 
 	@echo ""
 	@./test
