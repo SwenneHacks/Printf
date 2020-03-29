@@ -1,6 +1,6 @@
 # ft_Printf
 Codam's [42 Network] write-your-own-printf Project
-
+int     ft_printf ( const char * str, ... );
 
 ## Format:
 
