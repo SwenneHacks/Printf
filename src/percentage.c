@@ -46,11 +46,11 @@ int		ft_after_percent(const char *str)
 	i += ft_width(str + i);
 	i += ft_precision(str + i);
 	i += ft_argument(str + i);
-		// printf("\nflag |%c| \n", g_flag);
-		// printf("width|%d| \n", g_width);
-		// printf("prec |%d| \n", g_period);
-		// printf("star |%d| \n", g_precision);
-		// printf("conv |%c| \n", g_conversion);
+		printf("\nflag |%c| \n", g_flag);
+		printf("width|%d| \n", g_width);	
+		printf("dot  |%d| \n", g_period);
+		printf("preci|%d| \n", g_precision);
+		printf("conv |%c| \n", g_conversion);
 	return (i);
 }
 
