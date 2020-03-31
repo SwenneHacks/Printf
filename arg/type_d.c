@@ -14,8 +14,11 @@
 
 void	width_d(int nbr, int len)
 {
-	if (!g_width)
+	if (g_width > 0 && g_flag == SPACE)
+	{
 		ft_putnbr(nbr);
+		ft_putlen(' ', ft_sign(g_width) - len);
+	}	
 	else if (g_width != 0 && g_flag == MINUS)
 	{
 		ft_putnbr(nbr);
@@ -71,7 +74,11 @@ void	ft_d_argument(void)
 	nbr = va_arg(g_argument, int);
 	len = ft_lenbase(nbr, 10);
 	if (!g_period)
+	{
+		if (!g_width)
+			ft_putnbr(nbr);
 		width_d(nbr, len);
+	}
 	else
 		preci_d(nbr, len);
 }

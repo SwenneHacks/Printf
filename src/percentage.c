@@ -46,11 +46,6 @@ int		ft_after_percent(const char *str)
 	i += ft_width(str + i);
 	i += ft_precision(str + i);
 	i += ft_argument(str + i);
-		printf("\nflag |%c| \n", g_flag);
-		printf("width|%d| \n", g_width);	
-		printf("dot  |%d| \n", g_period);
-		printf("preci|%d| \n", g_precision);
-		printf("conv |%c| \n", g_conversion);
 	return (i);
 }
 
@@ -68,6 +63,12 @@ int		ft_flags(const char *str)
 	else if (str[i] == '-')
 	{
 		g_flag = MINUS;
+		i++;
+		return (i);
+	}
+	else if (str[i] == ' ')
+	{
+		g_flag = SPACE;
 		i++;
 		return (i);
 	}

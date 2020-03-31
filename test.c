@@ -10,6 +10,9 @@ int		main(void)
 		printf(			"%%d 		|%d|\n", i);
 	ft_printf(			"%%d 		|%d|\n", i);
 	ft_putchar('\n');
+		printf(			"%% d 		|% d|\n", i);
+	ft_printf(			"%% d 		|% d|\n", i);
+	ft_putchar('\n');
 		printf(			"%%05d 		|%05d|\n", i);
 	ft_printf(			"%%05d 		|%05d|\n", i);
 	ft_putchar('\n');
@@ -18,6 +21,7 @@ int		main(void)
 	ft_putchar('\n');
 		printf(			"%%i 		|%i|\n", i);
 	ft_printf(			"%%i 		|%i|\n", i);
+	ft_putchar('\n');
 		printf(			"%%.1d		|%.1d|\n", i);
 	ft_printf(			"%%.1d		|%.1d|\n", i);
 	ft_putchar('\n');
@@ -29,6 +33,9 @@ int		main(void)
 	ft_putchar('\n');
 		printf(			"%%5.1d		|%5.1d|\n", i);
 	ft_printf(			"%%5.1d		|%5.1d|\n", i);
+	ft_putchar('\n');
+		printf(		"%% -5d 		|% -5d|\n", i);
+	ft_printf(		"%% -5d 		|% -5d|\n", i);
 	ft_putchar('\n');
 		printf(			"%%c 		|%c|\n", c);
 	ft_printf(			"%%c 		|%c|\n", c);
@@ -79,9 +86,6 @@ int		main(void)
 	ft_printf(			"%%o 		|%o|\n", 555);
 	ft_putchar('\n');
 	ft_putstr("______________ TO FIX: \n");
-	ft_putchar('\n');
-		printf(		"%% d 		|% d|\n", i);
-	ft_printf(		"%% d 		|% d|\n", i);
 	ft_putchar('\n');
 		printf(		"%%u 		|%u|\n", -7);
 	ft_printf(		"%%u 		|%u|\n", -7);
