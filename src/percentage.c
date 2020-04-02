@@ -96,6 +96,11 @@ int		ft_width(const char *str)
 		else
 		{
 			g_width = va_arg(g_argument, int);
+			if (g_width < 0)
+			{
+				g_flag = MINUS;
+				g_width *= -1;
+			}
 			i++;
 			return (i);
 		}
@@ -137,6 +142,8 @@ int		ft_asterik(const char *str)
 		else
 		{
 			g_precision = va_arg(g_argument, int);
+			if (g_precision <= 0)
+				g_flag = MINUS;
 			i++;
 			return (i);
 		}

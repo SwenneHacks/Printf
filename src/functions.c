@@ -12,15 +12,6 @@
 
 #include "../printf.h"
 
-void	init_globalv(void)
-{
-	g_return = 0;
-	g_flag = -1;
-	g_width = 0;
-	g_period = 0;
-	g_precision = 0;
-}
-
 int		ft_sign(int nbr)
 {
 	if (nbr < 0)

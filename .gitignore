@@ -1,0 +1,8 @@
+*
+!src/
+!arg/
+!Makefile
+!test.c
+!printf.h
+!README.md
+!.gitignore

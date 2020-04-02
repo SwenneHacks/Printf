@@ -13,7 +13,9 @@
 NAME = printf.a
 INC = printf.h
 FLAGS = -Wall -Wextra -Werror
-TEST = test.c
+
+TEST_S = test.c
+TEST_P = test_ultimate.c
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -44,7 +46,7 @@ $(NAME): $(OBJ)
 clean:
 	@rm -rf obj
 	@echo "Removing $@"
-	@$(RM) a.out test
+	@$(RM) a.out test test_p test_s
 	@echo "~~~~ Done Cleaning \n"
 	
 fclean: clean
@@ -56,9 +58,14 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: re
-	gcc $(FLAGS) $(TEST) $(NAME) -o test 
+	gcc $(FLAGS) $(TEST_S) $(NAME) -g -o test_s
 	@echo ""
-	@./test
+	@./test_s
+
+peer: re
+	gcc $(FLAGS) $(TEST_P) $(NAME) -g -o test_p 
+	@echo ""
+	@./test_p
 
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
