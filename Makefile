@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf.a
+NAME = libftprintf.a
 INC = printf.h
 FLAGS = -Wall -Wextra -Werror
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 	@mkdir obj
 	@mv $(OBJ) obj
-	@echo "~~~~ Done creating printf.a \n"
+	@echo "~~~~ Done creating libftprintf.a \n"
 	
 %.o: %.c
 	@echo "Compiling $< $@"
