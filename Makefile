@@ -13,9 +13,7 @@
 NAME = libftprintf.a
 INC = printf.h
 FLAGS = -Wall -Wextra -Werror
-
-TEST_S = test.c
-TEST_P = test_ultimate.c
+TEST = test.c
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -58,9 +56,9 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: re
-	gcc $(FLAGS) $(TEST_S) $(NAME) -g -o test_s
+	gcc $(FLAGS) $(TEST) $(NAME) -o test
 	@echo ""
-	@./test_s
+	@./test
 
 peer: re
 	gcc $(FLAGS) $(TEST_P) $(NAME) -g -o test_p 
