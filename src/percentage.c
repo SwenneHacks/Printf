@@ -54,6 +54,8 @@ int		ft_flags(const char *str)
 	int i;
 
 	i = 0;
+	if (str[i] == '+')
+		i++;
 	if (str[i] == '0')
 	{
 		g_flag = ZERO;
@@ -117,7 +119,7 @@ int		ft_precision(const char *str)
 	i = 0;
 	if (str[i] == '.')
 	{
-		g_period = 1;
+		g_period = TRUE;
 		i++;
 		i += ft_asterik(str + i);
 		return (i);
