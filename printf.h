@@ -15,7 +15,8 @@
 
 # define MINUS '-'
 # define SPACE ' '
-# define ZERO 'O'
+# define ZERO 'o'
+# define TRUE '1'
 # define NOFLAG '0'
 
 # include <stdarg.h>
