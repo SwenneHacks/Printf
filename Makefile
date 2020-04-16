@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
+LIB = libft.a
 INC = printf.h
 FLAGS = -Wall -Wextra -Werror
 TEST = test.c
@@ -56,7 +57,7 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: re
-	gcc $(FLAGS) $(TEST) $(NAME) -o test
+	gcc $(FLAGS) $(TEST) $(LIB) $(NAME) -o test
 	@echo ""
 	@./test
 
