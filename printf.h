@@ -19,6 +19,9 @@
 # define TRUE '1'
 # define NOFLAG '0'
 
+# define INT_MIN -2147483648
+# define INT_MAX 2147483648
+
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
