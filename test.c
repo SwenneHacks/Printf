@@ -1,15 +1,19 @@
-#include "../printf.h"
+#include "printf.h"
 
 void	result(int test, int ft)
 {
 	if (test == ft)
+	{
 		ft_putstr("				PASS\n");
+		g_pass ++;
+	}
 	else
 	{
 		ft_putstr("				FAIL\n");
 		printf("				pf[%d]\n", test);
 		printf("				ft[%d]\n\n", ft);
 	}
+	g_test++;
 }
 
 int		main(void)
@@ -20,6 +24,8 @@ int		main(void)
 	char			c = 'c';
 	char			*s = "Here";
 	int				t;
+	g_pass 			= 0;
+	g_test			= 0;
 
 	ft_putstr("______________ DONE: \n\n");
 //_______________________________________________________ DIGITS
@@ -86,9 +92,6 @@ int		main(void)
 	test =	printf(			"%%*.*s		|%*.*s|\n", -5, 2, s);
 	t =	ft_printf(			"%%*.*s		|%*.*s|\n", -5, 2, s);
 	result(test, t);
-	test =	printf(			"%%-6.4s 		|%-6.4s|\n", s);
-	t =	ft_printf(			"%%-6.4s		|%-6.4s|\n", s);
-	result(test, t);
 	test =	printf(			"%%*s,-1 		|%*s|\n", -1, s);
 	t =	ft_printf(			"%%*s,-1 		|%*s|\n", -1, s);
 	result(test, t);
@@ -101,12 +104,9 @@ int		main(void)
 	test =	printf(			"%%--*s,1		|%--*s|\n", 1, s);
 	t =	ft_printf(			"%%--*s,1		|%--*s|\n", 1, s);
 	result(test, t);
-	test =	printf(			"%%.*s,2		|%.*s|\n", 2, s);
-	t =	ft_printf(			"%%.*s,2 		|%.*s|\n", 2, s);
-	result(test, t);
 //_______________________________________________________ POINTER
-	test =	printf(			"%%p 		|%p|\n", &c);
-	t =	ft_printf(			"%%p 		|%p|\n", &c);
+	test =	printf(			"%%p 	|%p|\n", &c);
+	t =	ft_printf(			"%%p 	|%p|\n", &c);
 	result(test, t);
 //_______________________________________________________ HEXA
 	test =	printf(			"%%x		|%x|\n", d);
@@ -201,8 +201,17 @@ int		main(void)
 	test =	printf(		"%%-8.3d		|%+-8.3d|\n", -8375);
 	t =	ft_printf(		"%%-8.3d		|%+-8.5d|\n", -8375);
 	result(test, t);
-	test =	printf(		"%%08.5d,0	|%08.5d|\n", 0);
-	t =	ft_printf(		"%%08.5d,0	|%08.5d|\n", 0);
+	test =	printf(			"%%08.5d,0	|%08.5d|\n", 0);
+	t =	ft_printf(			"%%08.5d,0	|%08.5d|\n", 0);
 	result(test, t);
+	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	t =	ft_printf(		"%%.*s,2 		|%.*s|\n", 2, s);
+	result(test, t);
+	test =	printf(		"%%-6.4s 		|%-6.4s|\n", s);
+	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
+	result(test, t);
+
+	printf("\n RESULT: %d correct out of %d tests\n", g_pass, g_test);
+
 	return (0);
 }
