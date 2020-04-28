@@ -15,7 +15,7 @@ LIB 	= libft.a
 INC 	= printf.h
 FLAGS 	= -Wall -Wextra -Werror
 TEST 	= test.c
-TRASH	= a.out test test_p test_s
+TRASH	= a.out test bug test_p test_s 
 
 DIR = lib/
 
@@ -64,7 +64,12 @@ test: re
 	$(CC) $(FLAGS) $(TEST) $(DIR)$(LIB) $(DIR)$(NAME) -o test
 	@echo ""
 	@./test
-	
+
+fix: re
+	@gcc -g $(FLAGS) $(DIR)$(LIB) $(DIR)$(NAME)
+	@echo "---- Done compiling for debugger.\n"
+	@./a.out
+
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
 	git status
