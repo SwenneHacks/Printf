@@ -13,10 +13,10 @@
 #ifndef PRINTF_H
 # define PRINTF_H
 
+# define TRUE 1
 # define MINUS '-'
 # define SPACE ' '
 # define ZERO 'o'
-# define TRUE '1'
 # define NOFLAG '0'
 
 # define INT_MIN -2147483648
@@ -34,6 +34,9 @@ int		g_period;
 int		g_width;
 int		g_precision;
 char	g_conversion;
+
+int     g_pass;
+int     g_test;
 
 int		ft_sign(int nbr);
 int		ft_atoi(const char *str);
