@@ -13,12 +13,12 @@
 #ifndef PRINTF_H
 # define PRINTF_H
 
-# define TRUE 1
 # define MINUS '-'
 # define SPACE ' '
 # define ZERO 'o'
 # define NOFLAG '0'
 
+# define TRUE 1
 # define INT_MIN -2147483648
 # define INT_MAX 2147483648
 

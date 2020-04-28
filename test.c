@@ -165,11 +165,17 @@ int		main(void)
 	test =	printf(			"%%u 		|%u|\n", i);
 	t =	ft_printf(			"%%u 		|%u|\n", i);
 	result(test, t);
+	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	t =	ft_printf(		"%%.*s,2 		|%.*s|\n", 2, s);
+	result(test, t);
+	test =	printf(		"%%-6.4s 		|%-6.4s|\n", s);
+	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
+	result(test, t);
 	test =	printf(			"%%.d,0		|%.d|\n", 0);
 	t =	ft_printf(			"%%.d,0		|%.d|\n", 0);
 	result(test, t);
-	test =	printf(		"%%.5d,55		|%.5d|\n", d);
-	t =	ft_printf(		"%%.5d,55		|%.5d|\n", d);
+	test =	printf(			"%%.5d		|%.5d|\n", d);
+	t =	ft_printf(			"%%.5d		|%.5d|\n", d);
 	result(test, t);
 	test =	printf(		"%%.5d,-		|%.5d|\n", i);
 	t =	ft_printf(		"%%.5d,-		|%.5d|\n", i);
@@ -183,8 +189,8 @@ int		main(void)
 	test =	printf(		"%%-1.d,0		|%-1.d|\n", 0);
 	t =	ft_printf(		"%%-1.d,0		|%-1.d|\n", 0);
 	result(test, t);
-	test =	printf(			"%%-8.5d,0	|%-8.5d|\n", 0);
-	t =	ft_printf(			"%%-8.5d,0	|%-8.5d|\n", 0);
+	test =	printf(		"%%-8.5d		|%-8.5d|\n", 0);
+	t =	ft_printf(		"%%-8.5d		|%-8.5d|\n", 0);
 	result(test, t);
 	test =	printf(		"%%-8.5d		|%-8.5d|\n", -217);
 	t =	ft_printf(		"%%-8.5d		|%-8.5d|\n", -217);
@@ -203,12 +209,6 @@ int		main(void)
 	result(test, t);
 	test =	printf(			"%%08.5d,0	|%08.5d|\n", 0);
 	t =	ft_printf(			"%%08.5d,0	|%08.5d|\n", 0);
-	result(test, t);
-	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
-	t =	ft_printf(		"%%.*s,2 		|%.*s|\n", 2, s);
-	result(test, t);
-	test =	printf(		"%%-6.4s 		|%-6.4s|\n", s);
-	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
 	result(test, t);
 
 	printf("\n RESULT: %d correct out of %d tests\n", g_pass, g_test);
