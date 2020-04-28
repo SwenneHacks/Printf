@@ -1,4 +1,4 @@
-#include "printf.h"
+#include "../printf.h"
 
 void	result(int test, int ft)
 {
@@ -7,7 +7,8 @@ void	result(int test, int ft)
 	else
 	{
 		ft_putstr("				FAIL\n");
-		printf("|		pf[%d]\n|		ft[%d]\n\n", test, ft);
+		printf("				pf[%d]\n", test);
+		printf("				ft[%d]\n\n", ft);
 	}
 }
 
@@ -15,7 +16,7 @@ int		main(void)
 {
 	int				test;
 	unsigned int	i = -7;
-	int				d = 555;
+	int				d = 55;
 	char			c = 'c';
 	char			*s = "Here";
 	int				t;
@@ -123,67 +124,67 @@ int		main(void)
 	t =	ft_printf(			"%%o 		|%o|\n", d);
 	result(test, t);
 
-	ft_putstr("\n_____________________________ ULTIMATE: \n\n");
+	ft_putstr("\n_____________________________ BONUS: \n\n");
 	
-	test =	printf(			"%% d 		|% d|\n", i);
-	t =	ft_printf(			"%% d 		|% d|\n", i);
+	test =	printf(		"%% d 		|% d|\n", i);
+	t =	ft_printf(		"%% d 		|% d|\n", i);
 	result(test, t);
-	test =	printf(			"%%  d 		|%  d|\n", i);
-	t =	ft_printf(			"%%  d 		|%  d|\n", i);
+	test =	printf(		"%%  d 		|%  d|\n", i);
+	t =	ft_printf(		"%%  d 		|%  d|\n", i);
 	result(test, t);
-	test =	printf(		"%% d, 0 		|% d|\n",  0);
-	t =	ft_printf(		"%% d, 0 		|% d|\n",  0);
+	test =	printf(	"%% d, 0 		|% d|\n",  0);
+	t =	ft_printf(	"%% d, 0 		|% d|\n",  0);
 	result(test, t);
-	test =	printf(		"%% -4d 		|% -4d|\n", d);
-	t =	ft_printf(		"%% -4d 		|% -4d|\n", d);
+	test =	printf(		"%% -4d,55 	|% -4d|\n", d);
+	t =	ft_printf(		"%% -4d,55 	|% -4d|\n", d);
 	result(test, t);
-	test =	printf(		"%%+-.1d		|%+-.1d|\n", i);
-	t =	ft_printf(		"%%+-.1d		|%+-.1d|\n", i);
+	test =	printf(		"%%+-.1d,-	|%+-.1d|\n", i);
+	t =	ft_printf(		"%%+-.1d,-	|%+-.1d|\n", i);
 	result(test, t);
-	test =	printf(		"%%+-2.d		|%+-2.d|\n", 0);
-	t =	ft_printf(		"%%+-2.d		|%+-2.d|\n", 0);
+	test =	printf(		"%%+-2.d,0	|%+-2.d|\n", 0);
+	t =	ft_printf(		"%%+-2.d,0	|%+-2.d|\n", 0);
 	result(test, t);
-	test =	printf(			"%%+3.d		|%+3.d|\n", 0);
-	t =	ft_printf(			"%%+3.d		|%+3.d|\n", 0);
+	test =	printf(		"%%+3.d, 0	|%+3.d|\n", 0);
+	t =	ft_printf(		"%%+3.d, 0	|%+3.d|\n", 0);
 	result(test, t);
-	test =	printf(		"%% .3d 		|% .3d|\n", 5);
-	t =	ft_printf(		"%% .3d 		|% .3d|\n", 5);
+	test =	printf(		"%% .3d,5 	|% .3d|\n", 5);
+	t =	ft_printf(		"%% .3d,5 	|% .3d|\n", 5);
 	result(test, t);
-	test =	printf(		"%% -.3d 		|% -.3d|\n", i);
-	t =	ft_printf(		"%% -.3d 		|% -.3d|\n", i);
+	test =	printf(		"%% -.3d,- 	|% -.3d|\n", i);
+	t =	ft_printf(		"%% -.3d,- 	|% -.3d|\n", i);
 	result(test, t);
-	test =	printf(		"%% 08.5d		|% 08.5d|\n", 0);
-	t =	ft_printf(		"%% 08.5d		|% 08.5d|\n", 0);
+	test =	printf(	"%% 08.5d		|% 08.5d|\n", 0);
+	t =	ft_printf(	"%% 08.5d		|% 08.5d|\n", 0);
 	result(test, t);
-	test =	printf(		"%% -5d 		|% -5d|\n", i);
-	t =	ft_printf(		"%% -5d 		|% -5d|\n", i);
+	test =	printf(		"%% -5d,- 	|% -5d|\n", i);
+	t =	ft_printf(		"%% -5d,- 	|% -5d|\n", i);
 	result(test, t);
 	
 	ft_putstr("\n______________________________ TO FIX: \n\n");
 
-	test =	printf(			"%%u 		|%u|\n", -7);
-	t =	ft_printf(			"%%u 		|%u|\n", -7);
+	test =	printf(			"%%u 		|%u|\n", i);
+	t =	ft_printf(			"%%u 		|%u|\n", i);
 	result(test, t);
 	test =	printf(			"%%.d,0		|%.d|\n", 0);
 	t =	ft_printf(			"%%.d,0		|%.d|\n", 0);
 	result(test, t);
-	test =	printf(			"%%.5d		|%.5d|\n", d);
-	t =	ft_printf(			"%%.5d		|%.5d|\n", d);
+	test =	printf(		"%%.5d,55		|%.5d|\n", d);
+	t =	ft_printf(		"%%.5d,55		|%.5d|\n", d);
 	result(test, t);
-	test =	printf(			"%%.5d		|%.5d|\n", i);
-	t =	ft_printf(			"%%.5d		|%.5d|\n", i);
+	test =	printf(		"%%.5d,-		|%.5d|\n", i);
+	t =	ft_printf(		"%%.5d,-		|%.5d|\n", i);
 	result(test, t);
-	test =	printf(			"%%.5d		|%.5d|\n", 0);
-	t =	ft_printf(			"%%.5d		|%.5d|\n", 0);
+	test =	printf(		"%%.5d,0		|%.5d|\n", 0);
+	t =	ft_printf(		"%%.5d,0		|%.5d|\n", 0);
 	result(test, t);
-	test =	printf(			"%%.0d		|%.0d|\n", 0);
-	t =	ft_printf(			"%%.0d		|%.0d|\n", 0);
+	test =	printf(		"%%.0d,0		|%.0d|\n", 0);
+	t =	ft_printf(		"%%.0d,0		|%.0d|\n", 0);
 	result(test, t);
-	test =	printf(			"%%-1.d		|%-1.d|\n", 0);
-	t =	ft_printf(			"%%-1.d		|%-1.d|\n", 0);
+	test =	printf(		"%%-1.d,0		|%-1.d|\n", 0);
+	t =	ft_printf(		"%%-1.d,0		|%-1.d|\n", 0);
 	result(test, t);
-	test =	printf(		"%%-8.5d		|%-8.5d|\n", 0);
-	t =	ft_printf(		"%%-8.5d		|%-8.5d|\n", 0);
+	test =	printf(			"%%-8.5d,0	|%-8.5d|\n", 0);
+	t =	ft_printf(			"%%-8.5d,0	|%-8.5d|\n", 0);
 	result(test, t);
 	test =	printf(		"%%-8.5d		|%-8.5d|\n", -217);
 	t =	ft_printf(		"%%-8.5d		|%-8.5d|\n", -217);
@@ -200,8 +201,8 @@ int		main(void)
 	test =	printf(		"%%-8.3d		|%+-8.3d|\n", -8375);
 	t =	ft_printf(		"%%-8.3d		|%+-8.5d|\n", -8375);
 	result(test, t);
-	test =	printf(		"%%08.5d		|%08.5d|\n", 0);
-	t =	ft_printf(		"%%08.5d		|%08.5d|\n", 0);
+	test =	printf(		"%%08.5d,0	|%08.5d|\n", 0);
+	t =	ft_printf(		"%%08.5d,0	|%08.5d|\n", 0);
 	result(test, t);
 	return (0);
 }

@@ -54,8 +54,6 @@ int		ft_flags(const char *str)
 	int i;
 
 	i = 0;
-	if (str[i] == '+')
-		i++;
 	if (str[i] == '0')
 	{
 		g_flag = ZERO;

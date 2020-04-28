@@ -11,7 +11,7 @@ int     ft_printf ( const char * str, ... );
 ## Flags:
 
 ```bash
-\ # 0 - + space
+ # 0 - + space
 ```
 
 **[-]**

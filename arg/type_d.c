@@ -73,6 +73,14 @@ void	ft_d_argument(void)
 
 	nbr = va_arg(g_argument, int);
 	len = ft_lenbase(nbr, 10);
+	if (nbr == 0)
+	{
+		if (g_precision && !g_width)
+			ft_putlen(' ', ft_sign(g_precision));
+		else if (!g_precision && !g_width)
+		{
+		}
+	}
 	if (!g_period)
 	{
 		if (!g_width)

@@ -10,11 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-LIB = libft.a
-INC = printf.h
-FLAGS = -Wall -Wextra -Werror
-TEST = test.c
+NAME 	= libftprintf.a
+LIB 	= libft.a
+INC 	= printf.h
+FLAGS 	= -Wall -Wextra -Werror
+TEST 	= test.c
+TRASH	= a.out test test_p test_s
+
+DIR = lib/
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -34,6 +37,7 @@ $(NAME): $(OBJ)
 	@echo ""
 	@ar rcs $@ $^
 	@ranlib $(NAME)
+	@mv $(NAME) $(DIR)
 	@mkdir obj
 	@mv $(OBJ) obj
 	@echo "~~~~ Done creating libftprintf.a \n"
@@ -43,13 +47,13 @@ $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) -I $(INC) -c $< -o $@
 	
 clean:
-	@rm -rf obj
+	@$(RM) -rf obj
 	@echo "Removing $@"
-	@$(RM) a.out test test_p test_s
+	@$(RM) $(TRASH)
 	@echo "~~~~ Done Cleaning \n"
 	
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(DIR)$(NAME)
 	@echo "Removing $@"
 	@echo "~~~~ Done with Fabulous Cleaning \n"
 
@@ -57,15 +61,10 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: re
-	gcc $(FLAGS) $(TEST) $(LIB) $(NAME) -o test
+	$(CC) $(FLAGS) $(TEST) $(DIR)$(LIB) $(DIR)$(NAME) -o test
 	@echo ""
 	@./test
-
-peer: re
-	gcc $(FLAGS) $(TEST_P) $(NAME) -g -o test_p 
-	@echo ""
-	@./test_p
-
+	
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
 	git status
