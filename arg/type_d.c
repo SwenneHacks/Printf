@@ -45,8 +45,29 @@ void	preci_d(int nbr, int len)
 {
 	if (g_width >= 0 && g_flag == MINUS)
 	{
-		ft_putlen(nbr, len);
-		ft_putlen(' ', g_precision - len);
+		if (nbr < 0)
+		{
+			ft_putchar('-');
+			nbr = nbr * -1;
+			len--;
+		}
+		if (g_width > 0)
+		{
+			ft_putlen('0', g_precision - len);
+			ft_putnbr(nbr);
+			if (g_width > g_precision)
+			{
+				if (len > g_precision)
+					ft_putlen(' ', g_width - len);
+				else
+					ft_putlen(' ', g_precision - len);
+			}
+		}
+		else if (!g_width)
+		{
+			ft_putnbr(nbr);
+			ft_putlen(' ', g_precision - len);
+		}
 	}
 	else if (g_flag == ZERO)
 	{
@@ -100,9 +121,8 @@ void	ft_d_argument(void)
 				ft_putlen(' ', g_precision - len);
 			}
 		}
-		else if (!g_precision && !g_width)
-		{
-		}
+		else if (g_period == 0)
+			ft_putnbr(0);
 	}
 	else if (!g_period)
 	{
