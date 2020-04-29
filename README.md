@@ -61,7 +61,7 @@ For %c type:'
 
 [. *]
 > The precision is not specified in the format string, but as an additional argument (value int) preceding the argument that has to be formatted. 
-The result is padded with space characters (by default), if required, on the left when right-justified, or on the right if left-justified.
+>The result is padded with space characters (by default), if required, on the left when right-justified, or on the right if left-justified.
 
 
 
