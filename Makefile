@@ -37,7 +37,6 @@ $(NAME): $(OBJ)
 	@echo ""
 	@ar rcs $@ $^
 	@ranlib $(NAME)
-	@mv $(NAME) $(DIR)
 	@mkdir obj
 	@mv $(OBJ) obj
 	@echo "~~~~ Done creating libftprintf.a \n"
@@ -53,7 +52,7 @@ clean:
 	@echo "~~~~ Done Cleaning \n"
 	
 fclean: clean
-	@$(RM) $(DIR)$(NAME)
+	@$(RM) $(NAME)
 	@echo "Removing $@"
 	@echo "~~~~ Done with Fabulous Cleaning \n"
 
@@ -61,14 +60,15 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: re
-	$(CC) $(FLAGS) $(TEST) $(DIR)$(LIB) $(DIR)$(NAME) -o test
+	$(CC) $(FLAGS) $(TEST) $(DIR)$(LIB) $(NAME) -o test
 	@echo ""
+	@clear
 	@./test
 
 fix: re
-	@gcc -g $(FLAGS) $(DIR)$(LIB) $(DIR)$(NAME)
+	@gcc -g $(FLAGS) $(DIR)$(LIB) $(NAME)
 	@echo "---- Done compiling for debugger.\n"
-	@./a.out
+	@/a.out
 
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
