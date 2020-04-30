@@ -105,24 +105,25 @@ void	ft_d_argument(void)
 	len = ft_lenbase(nbr, 10);
 	if (nbr == 0)
 	{
-		if (!g_precision && g_flag == MINUS)
-			ft_putchar(' ');
-		if (g_precision > 0 && g_width >= 0)
+		if (g_period == TRUE)
 		{
-			if (g_flag == ZERO)
-			{
-				len++;
-				ft_putlen(' ', g_precision - len);
-			}
-			ft_putlen('0', ft_sign(g_precision));
-			if (g_flag == MINUS)
-			{
-				len++;
-				ft_putlen(' ', g_precision - len);
-			}
+				if (g_flag == ZERO)
+				{
+					len++;
+					ft_putlen(' ', g_precision - len);
+				}
+				ft_putlen('0', ft_sign(g_precision));
+				if (g_width > 0 && g_flag == MINUS)
+					ft_putlen(' ', g_width - g_precision);
 		}
-		else if (g_period == 0)
+		else if (g_period == FALSE)
+		{
+			if (g_width > 0 && g_flag == NOFLAG)
+				ft_putlen(' ', g_width - len);
 			ft_putnbr(0);
+			if (g_width > 0 && g_flag == MINUS)
+				ft_putlen(' ', g_width - len);
+		}
 	}
 	else if (!g_period)
 	{
