@@ -129,6 +129,25 @@ int		main(void)
 	test =	printf(		"%%-3.3d		|%-3.3d|\n", -8375);
 	t =	ft_printf(		"%%-3.3d		|%-3.3d|\n", -8375);
 	result(test, t);
+	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	t =	ft_printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	result(test, t);
+	test =	printf(		"%%-6.4s		|%-6.4s|\n", s);
+	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
+	result(test, t);
+	test =	printf(		"%%-8.3d		|%-8.3d|\n", 8375);
+	t =	ft_printf(		"%%-8.3d		|%-8.3d|\n", 8375);
+	result(test, t);
+	test =	printf(		"%%-3.7d		|%-3.7d|\n", 3267);
+	t =	ft_printf(		"%%-3.7d		|%-3.7d|\n", 3267);
+	result(test, t);
+	test =	printf(		"%%-3.7d		|%-3.7d|\n", -2375);
+	t =	ft_printf(		"%%-3.7d		|%-3.7d|\n", -2375);
+	result(test, t);
+	test =	printf(			"%%08.5d,0	|%08.5d|\n", 0);
+	t =	ft_printf(			"%%08.5d,0	|%08.5d|\n", 0);
+	result(test, t);
+	
 //_____________________________________________________________ CHARS
 	test =	printf(			"%%c 		|%c|\n", c);
 	t =	ft_printf(			"%%c 		|%c|\n", c);
@@ -196,31 +215,22 @@ int		main(void)
 	t =	ft_printf(			"%%o 		|%o|\n", d);
 	result(test, t);
 	
-	ft_putstr("\n______________________________ TO FIX: \n\n");
+	ft_putstr("\n_____________________________________ TO FIX: \n\n");
 
 	test =	printf(			"%%u 		|%u|\n", i);
 	t =	ft_printf(			"%%u 		|%u|\n", i);
 	result(test, t);
-	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
-	t =	ft_printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	test =	printf(			"%%5d 		|%5d|\n", 0);
+	t =	ft_printf(			"%%5d 		|%5d|\n", 0);
 	result(test, t);
-	test =	printf(		"%%-6.4s		|%-6.4s|\n", s);
-	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
+	test =	printf(			"%%05d 		|%05d|\n", 0);
+	t =	ft_printf(			"%%05d 		|%05d|\n", 0);
 	result(test, t);
-	test =	printf(			"%%08.5d,0	|%08.5d|\n", 0);
-	t =	ft_printf(			"%%08.5d,0	|%08.5d|\n", 0);
-	result(test, t);
-	test =	printf(		"%%-8.3d		|%-8.3d|\n", 8375);
-	t =	ft_printf(		"%%-8.3d		|%-8.3d|\n", 8375);
-	result(test, t);
-	test =	printf(		"%%-3.7d		|%-3.7d|\n", 3267);
-	t =	ft_printf(		"%%-3.7d		|%-3.7d|\n", 3267);
-	result(test, t);
-	test =	printf(		"%%-3.7d		|%-3.7d|\n", -2375);
-	t =	ft_printf(		"%%-3.7d		|%-3.7d|\n", -2375);
+	test =	printf(			"%%-5d 		|%-5d|\n", 0);
+	t =	ft_printf(			"%%-5d 		|%-5d|\n", 0);
 	result(test, t);
 
-	printf("\n RESULT: %d correct out of %d tests\n", g_pass, g_test);
+	printf("\n RESULT: %d correct out of %d tests\n\n", g_pass, g_test);
 
 	return (0);
 }

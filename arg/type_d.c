@@ -108,21 +108,20 @@ void	ft_d_argument(void)
 		if (g_period == TRUE)
 		{
 				if (g_flag == ZERO)
-				{
-					len++;
-					ft_putlen(' ', g_precision - len);
-				}
+					ft_putlen(' ', g_precision - 2);
 				ft_putlen('0', ft_sign(g_precision));
 				if (g_width > 0 && g_flag == MINUS)
 					ft_putlen(' ', g_width - g_precision);
 		}
 		else if (g_period == FALSE)
 		{
+			if (g_width > 0 && g_flag == ZERO)
+				ft_putlen('0', g_width - 1);
 			if (g_width > 0 && g_flag == NOFLAG)
-				ft_putlen(' ', g_width - len);
+				ft_putlen(' ', g_width - 1);
 			ft_putnbr(0);
 			if (g_width > 0 && g_flag == MINUS)
-				ft_putlen(' ', g_width - len);
+				ft_putlen(' ', g_width - 1);
 		}
 	}
 	else if (!g_period)
