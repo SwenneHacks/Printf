@@ -54,7 +54,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@echo "Removing $@"
-	@echo "~~~~ Done with Fabulous Cleaning \n"
+	@echo "~~~~ Done with (F)abulous (Clean)ing \n"
 
 re: fclean all
 	@echo "~~~~ Done Restarting \n"
@@ -62,7 +62,6 @@ re: fclean all
 test: re
 	$(CC) $(FLAGS) $(TEST) $(DIR)$(LIB) $(NAME) -o test
 	@echo ""
-	@clear
 	@./test
 
 fix: re
