@@ -1,3 +1,4 @@
+
 #include "printf.h"
 
 void	result(int test, int ft)
