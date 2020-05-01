@@ -83,15 +83,18 @@ void	preci_d(int nbr, int len)
 	else if (g_width >= 0 && g_flag == NOFLAG)
 	{
 		if (g_width > 0)
-			ft_putlen(' ', g_width - len);
+		{
+			if (g_precision < len)
+				ft_putlen(' ', g_width - len);
+			ft_putlen(' ', g_precision - len);
+		}
 		if (nbr < 0)
 		{
 			ft_putchar('-');
 			nbr = nbr * -1;
 			len--;
 		}
-		if (!g_width)
-			ft_putlen('0', g_precision - len);
+		ft_putlen('0', g_precision - len);
 		ft_putnbr(nbr);
 	}
 }
@@ -109,8 +112,10 @@ void	ft_d_argument(void)
 		{
 				if (g_flag == ZERO)
 					ft_putlen(' ', g_precision - 2);
+				if (g_flag == NOFLAG && g_width > 0)
+					ft_putlen(' ', g_precision - 2);
 				ft_putlen('0', ft_sign(g_precision));
-				if (g_width > 0 && g_flag == MINUS)
+				if (g_flag == MINUS)
 					ft_putlen(' ', g_width - g_precision);
 		}
 		else if (g_period == FALSE)

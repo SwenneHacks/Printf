@@ -129,12 +129,6 @@ int		main(void)
 	test =	printf(		"%%-3.3d		|%-3.3d|\n", -8375);
 	t =	ft_printf(		"%%-3.3d		|%-3.3d|\n", -8375);
 	result(test, t);
-	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
-	t =	ft_printf(		"%%.*s,2		|%.*s|\n", 2, s);
-	result(test, t);
-	test =	printf(		"%%-6.4s		|%-6.4s|\n", s);
-	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
-	result(test, t);
 	test =	printf(		"%%-8.3d		|%-8.3d|\n", 8375);
 	t =	ft_printf(		"%%-8.3d		|%-8.3d|\n", 8375);
 	result(test, t);
@@ -144,8 +138,23 @@ int		main(void)
 	test =	printf(		"%%-3.7d		|%-3.7d|\n", -2375);
 	t =	ft_printf(		"%%-3.7d		|%-3.7d|\n", -2375);
 	result(test, t);
+	test =	printf(			"%%3d 		|%5d|\n", 0);
+	t =	ft_printf(			"%%3d 		|%5d|\n", 0);
+	result(test, t);
+	test =	printf(			"%%03d 		|%05d|\n", 0);
+	t =	ft_printf(			"%%03d 		|%05d|\n", 0);
+	result(test, t);
+	test =	printf(			"%%-3d 		|%-5d|\n", 0);
+	t =	ft_printf(			"%%-3d 		|%-5d|\n", 0);
+	result(test, t);
 	test =	printf(			"%%08.5d,0	|%08.5d|\n", 0);
 	t =	ft_printf(			"%%08.5d,0	|%08.5d|\n", 0);
+	result(test, t);
+	test =	printf(		"%%8.5d,0		|%8.5d|\n", 0);
+	t =	ft_printf(		"%%8.5d,0		|%8.5d|\n", 0);
+	result(test, t);
+	test =	printf(			"%%8.5d,55	|%8.5d|\n", 55);
+	t =	ft_printf(			"%%8.5d,55	|%8.5d|\n", 55);
 	result(test, t);
 	
 //_____________________________________________________________ CHARS
@@ -195,6 +204,12 @@ int		main(void)
 	test =	printf(			"%%--*s,1		|%--*s|\n", 1, s);
 	t =	ft_printf(			"%%--*s,1		|%--*s|\n", 1, s);
 	result(test, t);
+	test =	printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	t =	ft_printf(		"%%.*s,2		|%.*s|\n", 2, s);
+	result(test, t);
+	test =	printf(		"%%-6.4s		|%-6.4s|\n", s);
+	t =	ft_printf(		"%%-6.4s		|%-6.4s|\n", s);
+	result(test, t);
 //____________________________________________________________ POINTER
 	test =	printf(			"%%p 	|%p|\n", &c);
 	t =	ft_printf(			"%%p 	|%p|\n", &c);
@@ -220,17 +235,58 @@ int		main(void)
 	test =	printf(			"%%u 		|%u|\n", i);
 	t =	ft_printf(			"%%u 		|%u|\n", i);
 	result(test, t);
-	test =	printf(			"%%5d 		|%5d|\n", 0);
-	t =	ft_printf(			"%%5d 		|%5d|\n", 0);
-	result(test, t);
-	test =	printf(			"%%05d 		|%05d|\n", 0);
-	t =	ft_printf(			"%%05d 		|%05d|\n", 0);
-	result(test, t);
-	test =	printf(			"%%-5d 		|%-5d|\n", 0);
-	t =	ft_printf(			"%%-5d 		|%-5d|\n", 0);
-	result(test, t);
 
 	printf("\n RESULT: %d correct out of %d tests\n\n", g_pass, g_test);
 
 	return (0);
 }
+/*
+Test 538 (d_prec_width_fit_fit_pos) : FAILED.
+    First line of code: {return test("%8.5d", 34);}
+      expected output : "   00034"
+      your output     : "      34"
+      expected (nonprintable as hex) : "   00034"
+      actual   (nonprintable as hex) : "      34"
+
+Test 539 (d_prec_width_fit_fit_neg) : FAILED.
+    First line of code: {return test("%10.5d", -216);}
+      expected output : "    -00216"
+      your output     : "      -216"
+      expected (nonprintable as hex) : "    -00216"
+      actual   (nonprintable as hex) : "      -216"
+
+Test 540 (d_prec_width_fit_fit_zero) : FAILED.
+    First line of code: {return test("%8.5d", 0);}
+      expected output : "   00000"
+      your output     : "00000"
+      expected (nonprintable as hex) : "   00000"
+      actual   (nonprintable as hex) : "00000"
+
+Test 543 (d_prec_width_fit_nofit_pos) : FAILED.
+    First line of code: {return test("%3.7d", 3267);}
+      expected output : "0003267"
+      your output     : "3267"
+      expected (nonprintable as hex) : "0003267"
+      actual   (nonprintable as hex) : "3267"
+
+Test 544 (d_prec_width_fit_nofit_neg) : FAILED.
+    First line of code: {return test("%3.7d", -2375);}
+      expected output : "-0002375"
+      your output     : "-2375"
+      expected (nonprintable as hex) : "-0002375"
+      actual   (nonprintable as hex) : "-2375"
+
+Test 548 (d_prec_width_fit_fit_neg_lj) : FAILED.
+    First line of code: {return test("%-10.5d", -216);}
+      expected output : "-00216    "
+      your output     : "-00216  "
+      expected (nonprintable as hex) : "-00216    "
+      actual   (nonprintable as hex) : "-00216  "
+
+Test 551 (d_prec_width_nofit_fit_neg_lj) : FAILED.
+    First line of code: {return test("%-8.3d", -8473);}
+      expected output : "-8473   "
+      your output     : "-8473    "
+      expected (nonprintable as hex) : "-8473   "
+      actual   (nonprintable as hex) : "-8473    "
+	  */
