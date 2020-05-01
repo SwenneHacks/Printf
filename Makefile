@@ -13,7 +13,7 @@
 NAME 	= libftprintf.a
 LIB 	= libft.a
 INC 	= printf.h
-FLAGS 	= -Wall -Wextra -Werror
+FLAGS 	= -Wall -Wextra
 TEST 	= test.c
 TRASH	= a.out test bug test_p test_s 
 
