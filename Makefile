@@ -14,10 +14,8 @@ NAME 	= libftprintf.a
 LIB 	= libft.a
 INC 	= printf.h
 FLAGS 	= -Wall -Wextra
-TEST 	= test.c
-TRASH	= a.out test bug test_p test_s 
-
-DIR = lib/
+TEST 	= test_d.c 
+DIR 	= test/
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -48,7 +46,7 @@ $(NAME): $(OBJ)
 clean:
 	@$(RM) -rf obj
 	@echo "Removing $@"
-	@$(RM) $(TRASH)
+	@$(RM) $(DIR)test
 	@echo "~~~~ Done Cleaning \n"
 	
 fclean: clean
@@ -60,12 +58,12 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 test: re
-	$(CC) $(FLAGS) $(TEST) $(DIR)$(LIB) $(NAME) -o test
+	$(CC) $(FLAGS) $(DIR)$(TEST) lib/$(LIB) $(NAME) -o $(DIR)test
 	@echo ""
-	@./test
+	@./$(DIR)test
 
 fix: re
-	@gcc -g $(FLAGS) $(DIR)$(LIB) $(NAME)
+	@gcc -g $(FLAGS) lib/$(LIB) $(NAME)
 	@echo "---- Done compiling for debugger.\n"
 	@/a.out
 
