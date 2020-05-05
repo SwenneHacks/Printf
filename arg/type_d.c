@@ -51,26 +51,27 @@ void	preci_d(int nbr, int len)
 			nbr = nbr * -1;
 			len--;
 		}
+		ft_putlen('0', g_precision - len);
+		ft_putnbr(nbr);
 		if (g_width > 0)
 		{
-			ft_putlen('0', g_precision - len);
-			ft_putnbr(nbr);
-			if (g_width > g_precision)
-			{
-				if (len > g_precision)
-					ft_putlen(' ', g_width - len);
-				else
-					ft_putlen(' ', g_precision - len);
-			}
+			if (g_precision < len)
+				ft_putlen(' ', g_width - len);
+			if (g_precision < g_width)
+				ft_putlen(' ', g_precision - len);
 		}
-		else if (!g_width)
-		{
-			ft_putnbr(nbr);
+		if (!g_width)
 			ft_putlen(' ', g_precision - len);
-		}
 	}
 	if (g_flag == ZERO)
 	{
+		if (g_width > 0)
+		{
+			if (g_precision < len)
+				ft_putlen(' ', g_width - len);
+			if (g_precision < g_width)
+				ft_putlen(' ', g_precision - len);
+		}
 		if (nbr < 0)
 		{
 			ft_putchar('-');
@@ -82,18 +83,18 @@ void	preci_d(int nbr, int len)
 	}
 	if (g_flag == NOFLAG)
 	{
-		if (nbr < 0)
-		{
-			ft_putchar('-');
-			nbr = nbr * -1;
-			len--;
-		}
 		if (g_width > 0)
 		{
 			if (g_precision < len)
 				ft_putlen(' ', g_width - len);
 			if (g_precision < g_width)
 				ft_putlen(' ', g_precision - len);
+		}
+		if (nbr < 0)
+		{
+			ft_putchar('-');
+			nbr = nbr * -1;
+			len--;
 		}
 		ft_putlen('0', g_precision - len);
 		ft_putnbr(nbr);
@@ -138,4 +139,6 @@ void	ft_d_argument(void)
 	}
 	else
 		preci_d(nbr, len);
+	
+	printf("len  |%d|", len);
 }
