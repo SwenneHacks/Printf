@@ -14,12 +14,7 @@
 
 void	width_d(int nbr, int len)
 {
-	if (g_width > 0 && g_flag == SPACE)
-	{
-		ft_putnbr(nbr);
-		ft_putlen(' ', ft_sign(g_width) - len);
-	}	
-	else if (g_width != 0 && g_flag == MINUS)
+	if (g_width != 0 && g_flag == MINUS)
 	{
 		ft_putnbr(nbr);
 		ft_putlen(' ', ft_sign(g_width) - len);
@@ -43,12 +38,16 @@ void	width_d(int nbr, int len)
 
 void	preci_d(int nbr, int len)
 {
+	int sign;
+
+	sign = 0;
+	if (nbr < 0)
+		sign++;
 	if (g_flag == MINUS)
 	{
 		if (nbr < 0)
 		{
-			ft_putchar('-');
-			nbr = nbr * -1;
+			nbr = ft_putsign(nbr);
 			len--;
 		}
 		ft_putlen('0', g_precision - len);
@@ -56,44 +55,25 @@ void	preci_d(int nbr, int len)
 		if (g_width > 0)
 		{
 			if (g_precision < len)
-				ft_putlen(' ', g_width - len);
+				ft_putlen(' ', g_width - len - sign);
 			if (g_precision < g_width)
 				ft_putlen(' ', g_precision - len);
 		}
 		if (!g_width)
 			ft_putlen(' ', g_precision - len);
 	}
-	if (g_flag == ZERO)
+	if (g_flag == ZERO || g_flag == NOFLAG)
 	{
 		if (g_width > 0)
 		{
 			if (g_precision < len)
-				ft_putlen(' ', g_width - len);
+				ft_putlen(' ', g_width - len - sign);
 			if (g_precision < g_width)
-				ft_putlen(' ', g_precision - len);
+				ft_putlen(' ', g_precision - len - sign);
 		}
 		if (nbr < 0)
 		{
-			ft_putchar('-');
-			nbr = nbr * -1;
-			len--;
-		}
-		ft_putlen('0', g_precision - len);
-		ft_putnbr(nbr);
-	}
-	if (g_flag == NOFLAG)
-	{
-		if (g_width > 0)
-		{
-			if (g_precision < len)
-				ft_putlen(' ', g_width - len);
-			if (g_precision < g_width)
-				ft_putlen(' ', g_precision - len);
-		}
-		if (nbr < 0)
-		{
-			ft_putchar('-');
-			nbr = nbr * -1;
+			nbr = ft_putsign(nbr);
 			len--;
 		}
 		ft_putlen('0', g_precision - len);
@@ -112,13 +92,13 @@ void	ft_d_argument(void)
 	{
 		if (g_period == TRUE)
 		{
-				if (g_flag == ZERO)
-					ft_putlen(' ', g_precision - 2);
-				if (g_flag == NOFLAG && g_width > 0)
-					ft_putlen(' ', g_precision - 2);
+			if (g_flag == ZERO)
+				ft_putlen(' ', g_width - g_precision);
+			if (g_flag == NOFLAG && g_width > 0)
+				ft_putlen(' ', g_width - g_precision);
 				ft_putlen('0', ft_sign(g_precision));
-				if (g_flag == MINUS)
-					ft_putlen(' ', g_width - g_precision);
+			if (g_flag == MINUS)
+				ft_putlen(' ', g_width - g_precision);
 		}
 		else if (g_period == FALSE)
 		{
