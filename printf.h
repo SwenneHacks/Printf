@@ -40,6 +40,7 @@ int     g_pass;
 int     g_test;
 
 int		ft_sign(int nbr);
+int 	ft_putsign(int nbr);
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 size_t	ft_lenbase(long long nbr, int base);
