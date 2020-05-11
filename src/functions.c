@@ -29,6 +29,13 @@ int		ft_sign(int nbr)
 		return (nbr);
 }
 
+int		ft_putsign(int nbr)
+{
+	ft_putchar('-');
+	nbr = nbr * -1;
+	return (nbr);
+}
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
