@@ -58,6 +58,8 @@ int		ft_flags(const char *str)
 	{
 		g_flag = ZERO;
 		i++;
+		if (str[i] == '-')
+			g_flag = MINUS;
 		return (i);
 	}
 	else if (str[i] == '-')
