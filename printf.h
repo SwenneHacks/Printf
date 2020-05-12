@@ -15,8 +15,8 @@
 
 # define MINUS '-'
 # define SPACE ' '
-# define ZERO 'o'
-# define NOFLAG '0'
+# define ZERO '0'
+# define NOFLAG 'o'
 
 # define TRUE 1
 # define FALSE 0
