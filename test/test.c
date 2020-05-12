@@ -163,6 +163,18 @@ ft_putstr("\n_____________________________ BONUS: \n\n");
 	test =	printf(			"		|%0-8.5d|\n", -7);
 	t =	ft_printf(			"		|%0-8.5d|\n", -7);
 	result(test, t);
+		printf(			"%%--0.3d");
+	test =	printf(			"		|%--0.3d|\n", 77);
+	t =	ft_printf(			"		|%--0.3d|\n", 77);
+	result(test, t);
+		printf(			"%%-0.1d");
+	test =	printf(			"		|%-0.1d|\n", -77);
+	t =	ft_printf(			"		|%-0.1d|\n", -77);
+	result(test, t);
+		printf(			"%%0-5.3d");
+	test =	printf(			"		|%0-5.3d|\n", 0);
+	t =	ft_printf(			"		|%0-5.3d|\n", 0);
+	result(test, t);
 
 	printf("\n RESULT: %d correct out of %d tests\n\n", g_pass, g_test);
 
