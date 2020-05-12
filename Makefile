@@ -13,7 +13,7 @@
 NAME 	= libftprintf.a
 LIB 	= libft.a
 INC 	= printf.h
-FLAGS 	= -Wall -Wextra
+FLAGS 	= -Wall -Werror -Wextra
 TEST 	= test_d.c 
 DIR 	= test/
 
@@ -29,7 +29,7 @@ SRC = 	src/ft_printf.c \
 
 OBJ = $(SRC:%.c=%.o)
 
-all: $(NAME)
+all: $(SRC) $(NAME)
 
 $(NAME): $(OBJ)
 	@echo ""
