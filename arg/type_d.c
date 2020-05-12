@@ -40,43 +40,48 @@ void	preci_d(int nbr, int len)
 {
 	int sign;
 
-	sign = 0;
 	if (nbr < 0)
-		sign++;
+		sign = TRUE;
 	if (g_flag == MINUS)
 	{
 		if (nbr < 0)
-		{
 			nbr = ft_putsign(nbr);
-			len--;
-		}
-		ft_putlen('0', g_precision - len);
+		ft_putlen('0', g_precision - len + sign);
 		ft_putnbr(nbr);
-		if (g_width > 0)
+		if (g_width)
 		{
+			if (g_precision < g_width)
+				ft_putlen(' ', g_precision - len - sign);
 			if (g_precision < len)
 				ft_putlen(' ', g_width - len - sign);
-			if (g_precision < g_width)
-				ft_putlen(' ', g_precision - len);
+			if (g_width >= 9)
+			{
+				if (nbr > 0)
+					ft_putlen(' ', g_width % 9 + len - 1);
+				else
+					ft_putlen(' ', g_width % 9 + len + sign);
+			}
 		}
-		if (!g_width)
-			ft_putlen(' ', g_precision - len);
 	}
 	if (g_flag == ZERO || g_flag == NOFLAG)
 	{
-		if (g_width > 0)
+		if (g_width)
 		{
-			if (g_precision < len)
-				ft_putlen(' ', g_width - len - sign);
 			if (g_precision < g_width)
 				ft_putlen(' ', g_precision - len - sign);
+			if (g_precision < len)
+				ft_putlen(' ', g_width - len - sign);
+			if (g_width >= 9)
+			{
+				if (nbr > 0)
+					ft_putlen(' ', g_width % 9 + len - sign - 1);
+				else
+					ft_putlen(' ', g_width % 9 + len - sign);
+			}
 		}
 		if (nbr < 0)
-		{
 			nbr = ft_putsign(nbr);
-			len--;
-		}
-		ft_putlen('0', g_precision - len);
+		ft_putlen('0', g_precision - len + sign);
 		ft_putnbr(nbr);
 	}
 }
