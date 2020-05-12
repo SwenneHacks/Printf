@@ -33,13 +33,13 @@ int		ft_printf(const char *str, ...)
 		}
 		i++;
 	}
-	printf("\n");
-	printf("flag |%c| \n", g_flag);
-	printf("width|%d| \n", g_width);	
-	printf("dot? |%d| \n", g_period);
-	printf("preci|%d| \n", g_precision);
-	printf("conv |%c| \n", g_conversion);
-	printf("");
+	// printf("\n");
+	// printf("flag |%c| \n", g_flag);
+	// printf("width|%d| \n", g_width);	
+	// printf("dot? |%d| \n", g_period);
+	// printf("preci|%d| \n", g_precision);
+	// printf("conv |%c| \n", g_conversion);
+	// printf("");
 	va_end(g_argument);
 	return (g_return);
 }

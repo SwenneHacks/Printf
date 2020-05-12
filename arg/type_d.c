@@ -124,6 +124,6 @@ void	ft_d_argument(void)
 	}
 	else
 		preci_d(nbr, len);
-	
-	printf("len  |%d|", len);
+
+	// printf("len  |%d|", len);
 }
