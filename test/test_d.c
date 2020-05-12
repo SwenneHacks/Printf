@@ -90,6 +90,14 @@ int		main(void)
 	test =	printf(			"		|%08.5d|\n", -7);
 	t =	ft_printf(			"		|%08.5d|\n", -7);
 	result(test, t);
+		printf(			"%%1.10d");
+	test =	printf(			"		|%1.10d|\n", -77);
+	t =	ft_printf(			"		|%1.10d|\n", -77);
+	result(test, t);
+		printf(			"%%-1.11d");
+	test =	printf(			"		|%-1.11d|\n", -77);
+	t =	ft_printf(			"		|%-1.11d|\n", -77);
+	result(test, t);
 
 ft_putstr("_____________________________________\nPRECISION:\n\n");
 
@@ -136,6 +144,14 @@ ft_putstr("_____________________________________\nPRECISION:\n\n");
 		printf(			"%%0-5.3d");
 	test =	printf(			"		|%0-5.3d|\n", 07);
 	t =	ft_printf(			"		|%0-5.3d|\n", 07);
+	result(test, t);
+		printf(			"%%%%0.1d");
+	test =	printf(			"		|%%%0.1d|\n", 7);
+	t =	ft_printf(			"		|%%%0.1d|\n", 7);
+	result(test, t);
+		printf(			"%%000.0d");
+	test =	printf(			"		|%000.3d|\n", 7);
+	t =	ft_printf(			"		|%000.3d|\n", 7);
 	result(test, t);
 
 ft_putstr("_____________________________________\nZERO:\n\n");
@@ -189,16 +205,25 @@ ft_putstr("_____________________________________\nZERO:\n\n");
 	t =	ft_printf(			"		|%0-5.3d|\n", 0);
 	result(test, t);
 
-	printf("\n[%d done - %d OK]\n", g_test, g_pass);
+	printf("\n[Above: %d | %d OK]\n", g_test, g_pass);
 
 ft_putstr("_____________________________________\nERROR:\n\n");
+		
+		printf(			"%%10.5d");
+	test =	printf(			"		|%10.5d|\n", 7);
+	t =	ft_printf(			"		|%10.5d|\n", 7);
+	result(test, t);
 		printf(			"%%10.5d");
 	test =	printf(			"		|%10.5d|\n", -7);
 	t =	ft_printf(			"		|%10.5d|\n", -7);
 	result(test, t);
-		printf(			"%%-7.5d");
-	test =	printf(			"		|%-7.5d|\n", -7);
-	t =	ft_printf(			"		|%-7.5d|\n", -7);
+		printf(			"%%11.5d");
+	test =	printf(			"		|%11.5d|\n", -7);
+	t =	ft_printf(			"		|%11.5d|\n", -7);
+	result(test, t);
+		printf(			"%%-11.5d");
+	test =	printf(			"		|%-11.5d|\n", -7);
+	t =	ft_printf(			"		|%-11.5d|\n", -7);
 	result(test, t);
 		printf(			"%%-8.5d");
 	test =	printf(			"		|%-8.5d|\n", -7);
@@ -208,13 +233,9 @@ ft_putstr("_____________________________________\nERROR:\n\n");
 	test =	printf(			"		|%-9.5d|\n", -7);
 	t =	ft_printf(			"		|%-9.5d|\n", -7);
 	result(test, t);
-		printf(			"%%0-8.5d");
-	test =	printf(			"		|%0-8.5d|\n", 7);
-	t =	ft_printf(			"		|%0-8.5d|\n", 7);
-	result(test, t);
-		printf(			"%%0-8.5d");
-	test =	printf(			"		|%0-8.5d|\n", -7);
-	t =	ft_printf(			"		|%0-8.5d|\n", -7);
+		printf(			"%%--0.3d");
+	test =	printf(			"		|%--0.3d|\n", 7);
+	t =	ft_printf(			"		|%--0.3d|\n", 7);
 	result(test, t);
 	
 	printf(" RESULT: %d correct out of %d tests\n\n", g_pass, g_test);
