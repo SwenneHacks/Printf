@@ -30,14 +30,17 @@ int		main(void)
 
 ft_putstr("\n_____________________________ BONUS: \n\n");
 	
-	test =	printf(		"%% d 		|% d|\n", i);
-	t =	ft_printf(		"%% d 		|% d|\n", i);
+			printf(		"%% d");
+	test =	printf(					"|% d|\n", i);
+	t =	ft_printf(					"|% d|\n", i);
 	result(test, t);
-	test =	printf(		"%%  d 		|%  d|\n", i);
-	t =	ft_printf(		"%%  d 		|%  d|\n", i);
+			printf(		"%%  d"); 		
+	test =	printf(					"|%  d|\n", i);
+	t =	ft_printf(					"|%  d|\n", i);
 	result(test, t);
-	test =	printf(	"%% d, 0 		|% d|\n",  0);
-	t =	ft_printf(	"%% d, 0 		|% d|\n",  0);
+			printf(		"%% d, 0");
+	test =	printf(					"|% d|\n",  0);
+	t =	ft_printf(					"|% d|\n",  0);
 	result(test, t);
 	test =	printf(		"%% -4d,55 	|% -4d|\n", d);
 	t =	ft_printf(		"%% -4d,55 	|% -4d|\n", d);
@@ -151,6 +154,14 @@ ft_putstr("\n_____________________________ BONUS: \n\n");
 
 	test =	printf(			"%%u 		|%u|\n", i);
 	t =	ft_printf(			"%%u 		|%u|\n", i);
+	result(test, t);
+		printf(			"%%0-8.5d");
+	test =	printf(			"		|%0-8.5d|\n", 7);
+	t =	ft_printf(			"		|%0-8.5d|\n", 7);
+	result(test, t);
+		printf(			"%%0-8.5d");
+	test =	printf(			"		|%0-8.5d|\n", -7);
+	t =	ft_printf(			"		|%0-8.5d|\n", -7);
 	result(test, t);
 
 	printf("\n RESULT: %d correct out of %d tests\n\n", g_pass, g_test);
