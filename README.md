@@ -1,11 +1,11 @@
 # ft_Printf
 Codam's [42 Network] write-your-own-printf Project
-int     ft_printf ( const char * str, ... );
+>int         ft_printf ( const char * str, ... );
 
 ## Format:
 
 ```bash
-%[parameter][flags][width][.precision][length]type
+ft_printf("[%][flags][width][.precision][conversion]", arguments)
 ```
 
 ## Flags:
