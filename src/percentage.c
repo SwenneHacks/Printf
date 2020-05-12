@@ -19,16 +19,16 @@
 int		ft_percentage(const char *str)
 {
 	int i;
-	int print_percent;
+	int duo_percent;
 
 	i = 0;
 	while (str[i] == '%')
 		i++;
-	print_percent = i / 2;
-	while (print_percent)
+	duo_percent = i / 2;
+	while (duo_percent)
 	{
 		ft_putchar('%');
-		print_percent--;
+		duo_percent--;
 	}
 	if (i % 2 == 1)
 		i += ft_after_percent(str + i);
@@ -54,24 +54,18 @@ int		ft_flags(const char *str)
 	int i;
 
 	i = 0;
-	if (str[i] == '0')
-	{
-		g_flag = ZERO;
-		i++;
-		if (str[i] == '-')
-			g_flag = MINUS;
-		return (i);
-	}
-	else if (str[i] == '-')
+	if (str[i] == '-')
 	{
 		g_flag = MINUS;
 		i++;
 		return (i);
 	}
-	else if (str[i] == ' ')
+	else if (str[i] == '0')
 	{
-		g_flag = SPACE;
+		g_flag = ZERO;
 		i++;
+		if (str[i] == '-')
+			g_flag = MINUS;
 		return (i);
 	}
 	else
