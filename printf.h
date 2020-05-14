@@ -14,6 +14,7 @@
 # define PRINTF_H
 
 # define MINUS '-'
+# define PLUS '+'
 # define SPACE ' '
 # define ZERO '0'
 # define NOFLAG 'o'
@@ -31,6 +32,7 @@
 va_list	g_argument;
 int		g_return;
 char	g_flag;
+char	g_sign;
 int		g_period;
 int		g_width;
 int		g_precision;
@@ -41,6 +43,7 @@ int     g_test;
 
 int		ft_sign(int nbr);
 int 	ft_putsign(int nbr);
+int     ft_maxof(int v1, int v2);
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 size_t	ft_lenbase(long long nbr, int base);
