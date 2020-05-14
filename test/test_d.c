@@ -62,10 +62,6 @@ int		main(void)
 	test =	printf(			"		|%3.7d|\n", -55);
 	t =	ft_printf(			"		|%3.7d|\n", -55);
 	result(test, t);
-		printf(			"%%08.5d");
-	test =	printf(			"		|%08.5d|\n", 55);
-	t =	ft_printf(			"		|%08.5d|\n", 55);
-	result(test, t);
 		printf(			"%%-3.3d");
 	test =	printf(			"		|%-3.3d|\n", -8375);
 	t =	ft_printf(			"		|%-3.3d|\n", -8375);
@@ -81,10 +77,6 @@ int		main(void)
 		printf(			"%%-10d");
 	test =	printf(			"		|%-10d|\n", -777);
 	t =	ft_printf(			"		|%-10d|\n", -777);
-	result(test, t);
-		printf(			"%%08.5d");
-	test =	printf(			"		|%08.5d|\n", -7);
-	t =	ft_printf(			"		|%08.5d|\n", -7);
 	result(test, t);
 		printf(			"%%1.10d");
 	test =	printf(			"		|%1.10d|\n", -77);
@@ -205,6 +197,10 @@ ft_putstr("_____________________________________\nZERO:\n\n");
 
 ft_putstr("_____________________________________\nERROR:\n\n");
 		
+		printf(			"%%08.5d");
+	test =	printf(			"		|%08.5d|\n", 5);
+	t =	ft_printf(			"		|%08.5d|\n", 5);
+	result(test, t);
 		printf(			"%%8.5d");
 	test =	printf(			"		|%8.5d|\n", -77);
 	t =	ft_printf(			"		|%8.5d|\n", -77);
@@ -220,6 +216,10 @@ ft_putstr("_____________________________________\nERROR:\n\n");
 		printf(			"%%09.5d");
 	test =	printf(			"		|%09.5d|\n", -77);
 	t =	ft_printf(			"		|%09.5d|\n", -77);
+	result(test, t);
+		printf(			"%%010.5d");
+	test =	printf(			"		|%010.5d|\n", -77);
+	t =	ft_printf(			"		|%010.5d|\n", -77);
 	result(test, t);
 		printf(			"%%-7.5d");
 	test =	printf(			"		|%-7.5d|\n", -77);

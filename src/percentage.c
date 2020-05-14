@@ -82,10 +82,15 @@ int		ft_width(const char *str)
 	i = 0;
 	if ((str[i] == '*') || ft_isdigit_signed(str[i]))
 	{
-		if (('0' <= str[i] && str[i] <= '9') || (str[i] == '-'))
+		if (('0' <= str[i] && str[i] <= '9') || str[i] == '-')
 		{
 			g_width = ft_atoi(str);
-			while (('0' <= str[i] && str[i] <= '9') || str[i] == '-')
+			if (g_width < 0)
+			{
+				g_flag = MINUS;
+				g_width *= -1;
+			}
+			while (('0' <= str[i] && str[i] <= '9'))
 				i++;
 			return (i);
 		}

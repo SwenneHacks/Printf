@@ -17,15 +17,12 @@ void	width_d(int nbr, int len)
 	if (g_width != 0 && g_flag == MINUS)
 	{
 		ft_putnbr(nbr);
-		ft_putlen(' ', ft_sign(g_width) - len);
+		ft_putlen(' ', g_width - len);
 	}
 	else if (g_width > 0 && g_flag == ZERO)
 	{
 		if (nbr < 0)
-		{
-			ft_putchar('-');
-			nbr = nbr * -1;
-		}
+			nbr = ft_putsign(nbr);
 		ft_putlen('0', g_width - len);
 		ft_putnbr(nbr);
 	}
@@ -39,7 +36,6 @@ void	width_d(int nbr, int len)
 void	preci_d(int nbr, int len)
 {
 	int sign;
-
 	if (nbr < 0)
 		sign = TRUE;
 	if (g_flag == MINUS)
@@ -48,37 +44,16 @@ void	preci_d(int nbr, int len)
 			nbr = ft_putsign(nbr);
 		ft_putlen('0', g_precision - len + sign);
 		ft_putnbr(nbr);
-		if (g_width)
-		{
-			if (g_precision < g_width)
-				ft_putlen(' ', g_precision - len - sign);
-			if (g_precision < len)
-				ft_putlen(' ', g_width - len - sign);
-			if (g_width >= 9)
-			{
-				if (nbr > 0)
-					ft_putlen(' ', g_width % 9 + len - 1);
-				else
-					ft_putlen(' ', g_width % 9 + len + sign);
-			}
-		}
+	}
+	if (g_width)
+	{
+		if (g_precision < g_width)
+			ft_putlen(' ', g_width - ft_maxof(g_precision, len) - sign);
+		if (g_width > 9)
+			ft_putlen(' ', g_width % 9 - len - sign);
 	}
 	if (g_flag == ZERO || g_flag == NOFLAG)
 	{
-		if (g_width)
-		{
-			if (g_precision < g_width)
-				ft_putlen(' ', g_precision - len - sign);
-			if (g_precision < len)
-				ft_putlen(' ', g_width - len - sign);
-			if (g_width >= 9)
-			{
-				if (nbr > 0)
-					ft_putlen(' ', g_width % 9 + len - sign - 1);
-				else
-					ft_putlen(' ', g_width % 9 + len - sign);
-			}
-		}
 		if (nbr < 0)
 			nbr = ft_putsign(nbr);
 		ft_putlen('0', g_precision - len + sign);
@@ -97,13 +72,11 @@ void	ft_d_argument(void)
 	{
 		if (g_period == TRUE)
 		{
-			if (g_flag == ZERO)
+			if (g_flag == ZERO || g_flag == MINUS)
 				ft_putlen(' ', g_width - g_precision);
 			if (g_flag == NOFLAG && g_width > 0)
 				ft_putlen(' ', g_width - g_precision);
 				ft_putlen('0', ft_sign(g_precision));
-			if (g_flag == MINUS)
-				ft_putlen(' ', g_width - g_precision);
 		}
 		else if (g_period == FALSE)
 		{
