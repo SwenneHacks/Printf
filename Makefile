@@ -13,9 +13,10 @@
 NAME 	= libftprintf.a
 LIB 	= libft.a
 INC 	= printf.h
-FLAGS 	= -Wall -Werror -Wextra
-TEST 	= test_d.c 
-DIR 	= test/
+FLAGS 	= -Wall -Wextra
+BTEST 	= test.c
+DTEST	= test_d.c
+DIR 	= lib/
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -34,7 +35,7 @@ all: $(SRC) $(NAME)
 $(NAME): $(OBJ)
 	@echo ""
 	@ar rcs $@ $^
-	@ranlib $(NAME)
+	@ranlib $(NAME) $(DIR)$(LIB)
 	@mkdir obj
 	@mv $(OBJ) obj
 	@echo "~~~~ Done creating libftprintf.a \n"
@@ -57,15 +58,21 @@ fclean: clean
 re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
-test: re
-	$(CC) $(FLAGS) $(DIR)$(TEST) lib/$(LIB) $(NAME) -o $(DIR)test
+testB: re
+	$(CC) test/$(BTEST) $(NAME) -o test/test
 	@echo ""
-	@./$(DIR)test
+	@./test/test
+
+testD: re
+	$(CC) $(FLAGS) test/$(DTEST) $(NAME) -o test/test_d
+	@echo ""
+	@./test/test_d
 
 fix: re
-	@gcc -g $(FLAGS) lib/$(LIB) $(NAME)
+	@gcc $(FLAGS) -g $(NAME)
 	@echo "---- Done compiling for debugger.\n"
-	@/a.out
+	@./a.out
+
 
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
