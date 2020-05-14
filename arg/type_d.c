@@ -14,6 +14,8 @@
 
 void	width_d(int nbr, int len)
 {
+	if (nbr > 0 && g_sign != 0)
+		len++;
 	if (g_flag == MINUS)
 	{
 		ft_putnbr(ft_putsign(nbr));
