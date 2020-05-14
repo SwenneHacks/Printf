@@ -16,6 +16,7 @@ void	init_globalv(void)
 {
 	g_return = 0;
 	g_flag = -1;
+	g_sign = 0;
 	g_width = 0;
 	g_period = 0;
 	g_precision = 0;
@@ -29,11 +30,27 @@ int		ft_sign(int nbr)
 		return (nbr);
 }
 
+int	ft_maxof(int v1, int v2)
+{
+	return ((v1 < v2) ? (v2) : (v1)); 
+}
+
 int		ft_putsign(int nbr)
 {
-	ft_putchar('-');
-	nbr = nbr * -1;
+	if (nbr >= 0)
+	{
+		if (g_sign == PLUS)
+			ft_putchar('+');
+		else if (g_sign == SPACE)
+			ft_putchar(' ');
+	}
+	else
+	{
+		ft_putchar('-');
+		nbr = nbr * -1;
+	}
 	return (nbr);
+
 }
 
 void	ft_putchar(char c)
@@ -127,9 +144,9 @@ size_t	ft_strlen(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	long	result;
-	int		i;
-	int		sign;
+	unsigned long	result;
+	int				i;
+	int				sign;
 
 	result = 0;
 	i = 0;
@@ -144,15 +161,16 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (result < 0 && sign == -1)
+		if (result >= 9223372036854775807 && sign == -1)
 			return (0);
-		if (result < 0 && sign == 1)
+		if (result >= 9223372036854775807 && sign == 1)
 			return (-1);
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
 	return (sign * result);
 }
+
 
 int		ft_isdigit_signed(int c)
 {

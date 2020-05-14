@@ -33,13 +33,14 @@ int		ft_printf(const char *str, ...)
 		}
 		i++;
 	}
-	// printf("\n");
-	// printf("flag |%c| \n", g_flag);
-	// printf("width|%d| \n", g_width);	
-	// printf("dot? |%d| \n", g_period);
-	// printf("preci|%d| \n", g_precision);
-	// printf("conv |%c| \n", g_conversion);
-	// printf("");
+	printf("\n");
+	printf("flag |%c| \n", g_flag);
+	printf("sign |%c| \n", g_sign);
+	printf("width|%d| \n", g_width);	
+	printf("dot? |%d| \n", g_period);
+	printf("preci|%d| \n", g_precision);
+	printf("conv |%c| \n", g_conversion);
+	printf("");
 	va_end(g_argument);
 	return (g_return);
 }
@@ -48,8 +49,8 @@ int		ft_printf(const char *str, ...)
 // {
 // 	int a = 0;
 // 	int b = 0;
-// 	a = printf(		"[%-8.5d]\n", 0);
-// 	b = ft_printf(	"[%-8.5d]\n", 0);
-// 	printf("pf %d\nft %d\n", a, b);
+// 	a = printf(		"[%-3.3d]\n", -7777);
+// 	b = ft_printf(	"[%-3.3d]\n", -7777);
+// 	printf("\npf |%d|\nft |%d|\n\n", a, b);
 // 	return(0);
 // }

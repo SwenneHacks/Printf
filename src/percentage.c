@@ -54,10 +54,22 @@ int		ft_flags(const char *str)
 	int i;
 
 	i = 0;
+	if (str[i] == ' ')
+	{
+		g_sign = SPACE;
+		while (str[i] == ' ')
+			i++;
+	}
+	while (str[i] == '+')
+	{
+		g_sign = PLUS;
+		while (str[i] == '+')
+			i++;
+	}
 	if (str[i] == '-')
 	{
-		g_flag = MINUS;
 		i++;
+		g_flag = MINUS;
 		return (i);
 	}
 	else if (str[i] == '0')
