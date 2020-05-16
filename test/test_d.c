@@ -197,10 +197,6 @@ ft_putstr("_____________________________________\nZERO:\n\n");
 
 ft_putstr("_____________________________________\nERROR:\n\n");
 		
-		printf(			"%%08.5d");
-	test =	printf(			"		|%08.5d|\n", 5);
-	t =	ft_printf(			"		|%08.5d|\n", 5);
-	result(test, t);
 		printf(			"%%8.5d");
 	test =	printf(			"		|%8.5d|\n", -77);
 	t =	ft_printf(			"		|%8.5d|\n", -77);
@@ -269,17 +265,17 @@ ft_putstr("_____________________________________\nERROR:\n\n");
 	test =	printf(			"		|%11.5d|\n", 77);
 	t =	ft_printf(			"		|%11.5d|\n", 77);
 	result(test, t);
-		printf(			"%%10.5d");
-	test =	printf(			"		|%10.5d|\n", -77);
-	t =	ft_printf(			"		|%10.5d|\n", -77);
-	result(test, t);
 		printf(			"%%11.1d");
 	test =	printf(			"		|%11.5d|\n", 77);
 	t =	ft_printf(			"		|%11.5d|\n", 77);
 	result(test, t);
-		printf(			"%%12.1d");
-	test =	printf(			"		|%12.5d|\n", -77);
-	t =	ft_printf(			"		|%12.5d|\n", -77);
+		printf(			"%%11.1d");
+	test =	printf(			"		|%11.1d|\n", -77);
+	t =	ft_printf(			"		|%11.1d|\n", -77);
+	result(test, t);
+		printf(			"%%ddddd");
+	test =	printf(			"		|%d%d%d%d%d|\n", 'a','b',2,0,-1);
+	t =	ft_printf(			"		|%d%d%d%d%d|\n", 'a','b',2,0,-1);
 	result(test, t);
 	
 	printf("\n[RESULT: %d correct out of %d tests]\n\n", g_pass, g_test);

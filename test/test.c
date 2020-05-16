@@ -29,16 +29,8 @@ int		main(void)
 	g_test			= 0;
 
 
-	ft_putstr("_____________________________________ DONE: \n\n");
+	ft_putstr("_____________________________________\nCHARS: \n\n");
 
-//_______________________________________________________ DIGITS
-	test =	printf(			"%%i 		|%i|\n", -7);
-	t =	ft_printf(			"%%i 		|%i|\n", -7);
-	result(test, t);
-	test =	printf(			"%%d 		|%d|\n", -7);
-	t =	ft_printf(			"%%d 		|%d|\n", -7);
-	result(test, t);
-	
 //_____________________________________________________________ CHARS
 	test =	printf(			"%%c 		|%c|\n", c);
 	t =	ft_printf(			"%%c 		|%c|\n", c);
@@ -55,9 +47,34 @@ int		main(void)
 	test =	printf(			"%%*c,0		|%*c|\n", 0, d);
 	t =	ft_printf(			"%%*c,0		|%*c|\n", 0, d);
 	result(test, t);
-//____________________________________________________________ STRINGS
+	test =	printf(			"%%c 		|%c|\n", '\0');
+	t =	ft_printf(			"%%c 		|%c|\n", '\0');
+	result(test, t);
+	test =	printf(			"%%-4c 		|%.4c|\n", c);
+	t =	ft_printf(			"%%-4c 		|%.4c|\n", c);
+	result(test, t);
+	test =	printf(			"%%*c,4		|%.c|\n", c);
+	t =	ft_printf(			"%%*c,4		|%.c|\n", c);
+	result(test, t);
+	test =	printf(			"%%cc		|%c%c|\n", c, 'o');
+	t =	ft_printf(			"%%cc		|%c%c|\n", c, 'o');
+	result(test, t);
+	test =	printf(			"%%cc		|%c%c|\n", c, d);
+	t =	ft_printf(			"%%cc		|%c%c|\n", c, d);
+	result(test, t);
+	test =	printf(			"%% c 		|% c|\n", '\0');
+	t =	ft_printf(			"%% c 		|% c|\n", '\0');
+	result(test, t);
+	test =	printf(			"%%c 		|%c|\n", d);
+	t =	ft_printf(			"%%c 		|%c|\n", d);
+	result(test, t);
+
+ft_putstr("\n____________________________________\nSTRINGS: \n\n");
 	test =	printf(			"%%5s 		|%5s|\n", s);
 	t =	ft_printf(			"%%5s 		|%5s|\n", s);
+	result(test, t);
+	test =	printf(			"%%ss 		|%s%s|\n", s, "ok");
+	t =	ft_printf(			"%%ss 		|%s%s|\n", s, "ok");
 	result(test, t);
 	test =	printf(			"%%-5s 		|%-5s|\n", s);
 	t =	ft_printf(			"%%-5s 		|%-5s|\n", s);
@@ -115,7 +132,7 @@ int		main(void)
 	t =	ft_printf(			"%%u 		|%u|\n", i);
 	result(test, t);
 	
-ft_putstr("\n_____________________________ BONUS: \n\n");
+ft_putstr("\n_____________________________________\nBONUS: \n\n");
 	
 			printf(		"%%+d"); 		
 	test =	printf(			"		|%+d|\n", i);

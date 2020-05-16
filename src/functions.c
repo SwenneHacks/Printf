@@ -14,7 +14,6 @@
 
 void	init_globalv(void)
 {
-	g_return = 0;
 	g_flag = -1;
 	g_sign = 0;
 	g_width = 0;

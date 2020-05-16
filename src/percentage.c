@@ -31,7 +31,9 @@ int		ft_percentage(const char *str)
 		duo_percent--;
 	}
 	if (i % 2 == 1)
+	{
 		i += ft_after_percent(str + i);
+	}
 	return (i);
 }
 
@@ -41,8 +43,6 @@ int		ft_after_percent(const char *str)
 
 	i = 0;
 	i += ft_flags(str + i);
-	while (str[i] == '-')
-		i++;
 	i += ft_width(str + i);
 	i += ft_precision(str + i);
 	i += ft_argument(str + i);
@@ -68,8 +68,9 @@ int		ft_flags(const char *str)
 	}
 	if (str[i] == '-')
 	{
-		i++;
 		g_flag = MINUS;
+		while (str[i] == '-')
+			i++;
 		return (i);
 	}
 	else if (str[i] == '0')
@@ -193,9 +194,6 @@ int		ft_argument(const char *str)
 
 int		ft_conversion(char g_conversion)
 {
-	int i;
-
-	i = 0;
 	if (g_conversion == 'c')
 		ft_c_argument();
 	else if (g_conversion == 'd' || g_conversion == 'i')
@@ -208,6 +206,5 @@ int		ft_conversion(char g_conversion)
 		ft_p_argument();
 	else if (g_conversion == 'u' || g_conversion == 'o')
 		ft_u_argument();
-	i++;
-	return (i);
+	return (1);
 }
