@@ -13,11 +13,12 @@
 #ifndef PRINTF_H
 # define PRINTF_H
 
-# define MINUS '-'
-# define PLUS '+'
-# define SPACE ' '
-# define ZERO '0'
 # define NOFLAG 'o'
+# define SPACE ' '
+# define MINUS '-'
+# define HASH '#'
+# define PLUS '+'
+# define ZERO '0'
 
 # define TRUE 1
 # define FALSE 0
