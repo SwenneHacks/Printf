@@ -14,9 +14,11 @@ NAME 	= libftprintf.a
 LIB 	= libft.a
 INC 	= printf.h
 FLAGS 	= -Wall -Werror -Wextra
-BTEST 	= test.c
-DTEST	= test_d.c
 DIR 	= lib/
+
+BTEST 	= test.c
+CTEST	= test_c.c
+DTEST	= test_d.c
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -47,7 +49,6 @@ $(NAME): $(OBJ)
 clean:
 	@$(RM) -rf obj
 	@echo "Removing $@"
-	@$(RM) $(DIR)test
 	@echo "~~~~ Done Cleaning \n"
 	
 fclean: clean
@@ -59,19 +60,25 @@ re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
 testB: re
-	$(CC) test/$(BTEST) $(NAME) -o test/test
+	$(CC) $(NAME) $(BTEST) -o test/test
 	@echo ""
 	@./test/test
 
+testC: re
+	$(CC) $(NAME) $(CTEST) -o test/test_c
+	@echo ""
+	@./test/test_c
+
 testD: re
-	$(CC) $(FLAGS) test/$(DTEST) $(NAME) -o test/test_d
+	$(CC) $(NAME) $(DTEST) -o test/test_d
 	@echo ""
 	@./test/test_d
 
 fix: re
 	@gcc -g $(SRC)
 	@echo "---- Done compiling for debugger.\n"
-	@./a.out
+	@mv a.out a.out.dSYM /test
+	@./test/a.out
 
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
