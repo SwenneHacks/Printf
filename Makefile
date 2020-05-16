@@ -13,7 +13,7 @@
 NAME 	= libftprintf.a
 LIB 	= libft.a
 INC 	= printf.h
-FLAGS 	= -Wall -Wextra
+FLAGS 	= -Wall -Werror -Wextra
 BTEST 	= test.c
 DTEST	= test_d.c
 DIR 	= lib/
@@ -69,10 +69,9 @@ testD: re
 	@./test/test_d
 
 fix: re
-	@gcc $(FLAGS) -g $(NAME)
+	@gcc -g $(SRC)
 	@echo "---- Done compiling for debugger.\n"
 	@./a.out
-
 
 add:
 	git add $(SRC) Makefile $(INC) $(TEST)
