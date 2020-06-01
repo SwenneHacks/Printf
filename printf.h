@@ -28,51 +28,57 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 
-va_list	g_argument;
-int		g_return;
-char	g_flag;
-char	g_sign;
-int		g_period;
-int		g_width;
-int		g_precision;
-char	g_conversion;
-
-int     g_pass;
-int     g_test;
+typedef struct s_info
+{
+    char		flag;
+    int			sign;
+	int			width;
+	int			period;
+	int			precision;
+	char		conversion;
+	int			ret_value;
+    va_list		argument;
+} 				t_info;
 
 int		ft_sign(int nbr);
-int 	ft_putsign(int nbr);
 int     ft_maxof(int v1, int v2);
+int		ft_isdigit_signed(int c);
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 size_t	ft_lenbase(long long nbr, int base);
-void	ft_puthexa(unsigned long n, char c);
-void	ft_putocta(unsigned long n);
-void	ft_putnbr(int n);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-int		ft_putlen(char c, int len);
-int		ft_isdigit_signed(int c);
 /*
-**      My printf Functions
+**      Adapted libft Functions:
+*/
+void	pt_puthexa(t_info *node, unsigned long n, char c);
+void	pt_putocta(t_info *node, unsigned long n);
+void	pt_putnbr(t_info *node, int n);
+void	pt_putstr(t_info *node, char *str);
+int		pt_putlen(t_info *node, char c, int len);
+void	pt_putchar(t_info *node, char c);
+int 	pt_putsign(t_info *node, int nbr);
+/*
+**      My printf Functions:
 */
 int		ft_printf(const char *str, ...);
-int		ft_percentage(const char *str);
-int		ft_after_percent(const char *str);
-int		ft_flags(const char *str);
-void	init_globalv(void);
-int		ft_width(const char *str);
-int		ft_precision(const char *str);
-int		ft_asterik(const char *str);
-int		ft_conversion(char g_argument);
-int		ft_argument(const char *str);
-void	ft_c_argument(void);
-void	ft_s_argument(void);
-void	ft_d_argument(void);
-void	ft_x_argument(void);
-void	ft_p_argument(void);
-void	ft_u_argument(void);
+int		ft_percentage(t_info *node, const char *str);
+int		ft_after_percent(t_info *node, const char *str);
+int		ft_flags(t_info *node, const char *str);
+int		ft_width(t_info *node, const char *str);
+int		ft_asterik(t_info *node, const char *str);
+int		ft_argument(t_info *node, const char *str);
+int		ft_precision(t_info *node, const char *str);
+int		ft_conversion(t_info *node, char conversion);
+/*
+**      Arguments / conversions:
+*/
+void	ft_no_argument(t_info *node);
+void	ft_c_argument(t_info *node);
+void	ft_s_argument(t_info *node);
+void	ft_d_argument(t_info *node);
+void	ft_x_argument(t_info *node);
+void	ft_p_argument(t_info *node);
+void	ft_u_argument(t_info *node);
 
 #endif
