@@ -12,15 +12,17 @@
 
 #include "../printf.h"
 
-void	ft_u_argument(void)
+void	ft_u_argument(t_info *node)
 {
 	unsigned int	nbr;
 	//int	len;
 
-	nbr = (unsigned int)va_arg(g_argument, unsigned int);
+	nbr = (unsigned int)va_arg(node->argument, unsigned int);
 	//len = ft_lenbase(nbr, 10);
-	if (g_conversion == 'u')
-		ft_putnbr(nbr);
-	if (g_conversion == 'o')
-		ft_putocta(nbr);
+	if (node->conversion == 'u')
+		if(nbr < 0)
+			// ft_putnbr(node, nbr * -1);
+		pt_putnbr(node, nbr);
+	if (node->conversion == 'o')
+		pt_putocta(node, nbr);
 }

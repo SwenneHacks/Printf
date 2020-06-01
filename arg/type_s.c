@@ -12,85 +12,90 @@
 
 #include "../printf.h"
 
-void	width_s(char *str)
+void	width_s(t_info *node, char *str)
 {
 	int	len;
 
 	len = ft_strlen(str);
-	if (len > g_width)
-		ft_putstr(str);
+	if (len > node->width)
+		pt_putstr(node, str);
 	else
 	{
-		if (g_width != 1 && g_flag == MINUS)
+		if (node->width > 0 && node->flag == MINUS)
 		{
-			ft_putstr(str);
-			ft_putlen(' ', g_width - len);
+			pt_putstr(node, str);
+			pt_putlen(node, ' ', node->width - len);
 		}
-		else if (!g_width)
-			ft_putstr(str);
-		else if (g_width > 0 && g_flag == NOFLAG)
+		else if (!node->width)
+			pt_putstr(node, str);
+		else if (node->width > 0 && node->flag == NOFLAG)
 		{
-			ft_putlen(' ', g_width - len);
-			ft_putstr(str);
+			pt_putlen(node, ' ', node->width - len);
+			pt_putstr(node, str);
+		}
+		else if (node->width > 0 && node->flag == ZERO)
+		{
+			pt_putlen(node, '0', node->width - len);
+			pt_putstr(node, str);
 		}
 	}
 }
 
-int		len_str(char *str)
+int		len_str(t_info *node, char *str)
 {
 	int	len;
 
 	len = ft_strlen(str);
-	if (len <= g_precision)
+	if (len <= node->precision)
 		return (len);
 	else
-		return (g_precision);
+		return (node->precision);
 }
 
-void	preci_s(char *str)
+void	preci_s(t_info *node, char *str)
 {
 	int i;
 	int	len;
 
 	i = 0;
-	if (g_flag == MINUS)
+	if (node->flag == MINUS)
 	{
-		while (i < g_precision && str[i])
+		while (i < node->precision && str[i])
 		{
-			ft_putchar(str[i]);
+			pt_putchar(node, str[i]);
 			i++;
 		}
-		ft_putlen(' ', g_width - i);
+		pt_putlen(node, ' ', node->width - i);
 	}
-	else if (!g_width)
+	else if (!node->width)
 	{
-		while (i < g_precision && str[i])
+		while (i < node->precision && str[i])
 		{
-			ft_putchar(str[i]);
+			pt_putchar(node, str[i]);
 			i++;
 		}
 	}
 	else
 	{
-		len = len_str(str);
-		ft_putlen(' ', g_width - len);
+		len = len_str(node, str);
+		pt_putlen(node, ' ', node->width - len);
 		while (i < len && str[i])
 		{
-			ft_putchar(str[i]);
+			pt_putchar(node, str[i]);
 			i++;
 		}
 	}
 }
 
-void	ft_s_argument(void)
+void	ft_s_argument(t_info *node)
 {
 	char *str;
 
-	str = va_arg(g_argument, char *);
+	str = va_arg(node->argument, char *);
 	if (str == NULL)
 		str = "(null)";
-	if (!g_period)
-		width_s(str);
+	if (!node->period)
+		width_s(node, str);
 	else
-		preci_s(str);
+		preci_s(node, str);
 }

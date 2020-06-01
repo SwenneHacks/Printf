@@ -12,102 +12,104 @@
 
 #include "../printf.h"
 
-void	width_d(int nbr, int len)
+void	width_d(t_info *node, int nbr, int len)
 {
-	if (nbr > 0 && g_sign != 0)
+	if (nbr > 0 && node->sign != 0)
 		len++;
-	if (g_flag == MINUS)
+	if (node->flag == MINUS)
 	{
-		ft_putnbr(ft_putsign(nbr));
-		ft_putlen(' ', g_width - len);
+		pt_putnbr(node, pt_putsign(node, nbr));
+		pt_putlen(node, ' ', node->width - len);
 	}
-	else if (g_flag == ZERO)
+	else if (node->flag == ZERO)
 	{
-		nbr = ft_putsign(nbr);
-		ft_putlen('0', g_width - len);
-		ft_putnbr(nbr);
+		nbr = pt_putsign(node, nbr);
+		pt_putlen(node, '0', node->width - len);
+		pt_putnbr(node, nbr);
 	}
-	else if (g_flag == NOFLAG)
+	else if (node->flag == NOFLAG)
 	{
-		ft_putlen(' ', g_width - len);
-		ft_putnbr(ft_putsign(nbr));
+		pt_putlen(node, ' ', node->width - len);
+		pt_putnbr(node, pt_putsign(node, nbr));
 	}
 }
 
-void	preci_d(int nbr, int len)
+void	preci_d(t_info *node, int nbr, int len)
 {
 	int sign;
+
+	sign = 0;
 	if (nbr < 0)
 		sign = TRUE;
-	if (g_flag == MINUS)
+	if (node->flag == MINUS)
 	{
-		nbr = ft_putsign(nbr);
-		ft_putlen('0', g_precision - len + sign);
-		ft_putnbr(nbr);
+		nbr = pt_putsign(node, nbr);
+		pt_putlen(node, '0', node->precision - len + sign);
+		pt_putnbr(node, nbr);
 	}
-	if (g_width)
+	if (node->width)
 	{
-		if (g_precision < g_width)
+		if (node->precision < node->width)
 		{
-			ft_putlen(' ', g_width - ft_maxof(g_precision, len) - sign);
-			if (g_precision < len)
-				ft_putlen(' ', sign);
+			pt_putlen(node, ' ', node->width - ft_maxof(node->precision, len) - sign);
+			if (node->precision < len)
+				pt_putlen(node, ' ', sign);
 		}
-		if (g_width > 9)
-			ft_putlen(' ', g_width % 9 - len - sign);
+		if (node->width > 9)
+			pt_putlen(node, ' ', node->width % 9 - len - sign);
 	}
-	if (g_flag == ZERO || g_flag == NOFLAG)
+	if (node->flag == ZERO || node->flag == NOFLAG)
 	{
-		nbr = ft_putsign(nbr);
-		ft_putlen('0', g_precision - len + sign);
-		ft_putnbr(nbr);
+		nbr = pt_putsign(node, nbr);
+		pt_putlen(node, '0', node->precision - len + sign);
+		pt_putnbr(node, nbr);
 	}
 }
 
-void	ft_d_argument(void)
+void	ft_d_argument(t_info *node)
 {
 	int	nbr;
 	int	len;
 
-	nbr = va_arg(g_argument, int);
+	nbr = va_arg(node->argument, int);
 	len = ft_lenbase(nbr, 10);
 	if (nbr == 0)
 	{
-		if (g_period == TRUE)
+		if (node->period == TRUE)
 		{
-			if (g_sign != 0)
-				g_width--;
-			if (g_flag == ZERO)
-				ft_putlen(' ', g_width - g_precision);
-			if (g_flag == NOFLAG)
-				ft_putlen(' ', g_width - g_precision);
-			if (g_sign != 0)
-				ft_putsign(nbr);
-			ft_putlen('0', g_precision);
-			if (g_flag == MINUS)
-				ft_putlen(' ', g_width - g_precision);
+			if (node->sign != 0)
+				node->width--;
+			if (node->flag == ZERO)
+				pt_putlen(node, ' ', node->width - node->precision);
+			if (node->flag == NOFLAG)
+				pt_putlen(node, ' ', node->width - node->precision);
+			if (node->sign != 0)
+				pt_putsign(node, nbr);
+			pt_putlen(node, '0', node->precision);
+			if (node->flag == MINUS)
+				pt_putlen(node, ' ', node->width - node->precision);
 			
 		}
-		else if (g_period == FALSE)
+		else if (node->period == FALSE)
 		{
-			if (g_width > 0 && g_flag == ZERO)
-				ft_putlen('0', g_width - 1);
-			if (g_width > 0 && g_flag == NOFLAG)
-				ft_putlen(' ', g_width - 1);
-			ft_putnbr(ft_putsign(nbr));
-			if (g_width > 0 && g_flag == MINUS)
-				ft_putlen(' ', g_width - 1);
+			if (node->width > 0 && node->flag == ZERO)
+				pt_putlen(node, '0', node->width - 1);
+			if (node->width > 0 && node->flag == NOFLAG)
+				pt_putlen(node, ' ', node->width - 1);
+			pt_putnbr(node, pt_putsign(node, nbr));
+			if (node->width > 0 && node->flag == MINUS)
+				pt_putlen(node, ' ', node->width - 1);
 		}
 	}
-	else if (!g_period)
+	else if (!node->period)
 	{
-		if (!g_width)
-			ft_putnbr(ft_putsign(nbr));
+		if (!node->width)
+			pt_putnbr(node, pt_putsign(node, nbr));
 		else
-			width_d(nbr, len);
+			width_d(node, nbr, len);
 	}
 	else
-		preci_d(nbr, len);
+		preci_d(node, nbr, len);
 
 	// printf("len  |%d|", len);
 }

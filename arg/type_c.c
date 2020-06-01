@@ -12,21 +12,26 @@
 
 #include "../printf.h"
 
-void	ft_c_argument(void)
+void	ft_c_argument(t_info *node)
 {
 	char	c;
 
-	c = va_arg(g_argument, int);
-	if (!g_width && g_flag == NOFLAG)
-		ft_putchar(c);
-	if ((g_width != 1 && g_flag == MINUS))
+	c = va_arg(node->argument, int);
+	if (!node->width && node->flag == NOFLAG)
+		pt_putchar(node, c);
+	if (node->flag == MINUS)
 	{
-		ft_putchar(c);
-		ft_putlen(' ', (ft_sign(g_width) - 1));
+		pt_putchar(node, c);
+		pt_putlen(node, ' ', (ft_sign(node->width) - 1));
 	}
-	else if (g_width > 0 && g_flag == NOFLAG)
+	else if (node->width > 0 && node->flag == NOFLAG)
 	{
-		ft_putlen(' ', g_width - 1);
-		ft_putchar(c);
+		pt_putlen(node, ' ', node->width - 1);
+		pt_putchar(node, c);
 	}
+    else if (node->flag == ZERO)
+    {
+        pt_putlen(node, '0', node->width - 1);
+        pt_putchar(node, c);
+    }
 }

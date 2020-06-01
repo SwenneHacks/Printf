@@ -35,17 +35,17 @@
 // 		ft_puthexa(nbr, 'X');
 // }
 
-void	ft_x_argument(void)
+void	ft_x_argument(t_info *node)
 {
 	int	nbr;
 	//int	len;
 
-	nbr = va_arg(g_argument, unsigned int);
+	nbr = va_arg(node->argument, unsigned int);
 	//len = ft_lenbase(nbr, 16);
-	if (g_conversion == 'x')
-		ft_puthexa(nbr, 'x');
-	if (g_conversion == 'X')
-		ft_puthexa(nbr, 'X');
+	if (node->conversion == 'x')
+		pt_puthexa(node, nbr, 'x');
+	if (node->conversion == 'X')
+		pt_puthexa(node, nbr, 'X');
 	// if (!g_period)
 	// 	ft_no_dot(nbr, len);
 	// else
