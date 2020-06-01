@@ -13,10 +13,10 @@
 #include "../printf.h"
 
 /*
-** %[parameter][flags][width][.precision][length]type
+** %[2xpercent?][flags][width][.precision][length][conversion]
 */
 
-int		ft_percentage(const char *str)
+int		ft_percentage(t_info *node, const char *str)
 {
 	int i;
 	int duo_percent;
@@ -27,68 +27,67 @@ int		ft_percentage(const char *str)
 	duo_percent = i / 2;
 	while (duo_percent)
 	{
-		ft_putchar('%');
+		pt_putchar(node, '%');
 		duo_percent--;
 	}
 	if (i % 2 == 1)
 	{
-		i += ft_after_percent(str + i);
+		i += ft_after_percent(node, str + i);
 	}
 	return (i);
 }
 
-int		ft_after_percent(const char *str)
+int		ft_after_percent(t_info *node, const char *str)
 {
 	int i;
 
 	i = 0;
-	i += ft_flags(str + i);
-	i += ft_width(str + i);
-	i += ft_precision(str + i);
-	i += ft_argument(str + i);
+	i += ft_flags(node, str + i);
+	i += ft_width(node, str + i);
+	i += ft_precision(node, str + i);
+	i += ft_argument(node, str + i);
 	return (i);
 }
 
-int		ft_flags(const char *str)
+int		ft_flags(t_info *node, const char *str)
 {
 	int i;
 
 	i = 0;
 	if (str[i] == ' ')
 	{
-		g_sign = SPACE;
+		node->sign = SPACE;
 		while (str[i] == ' ')
 			i++;
 	}
-	while (str[i] == '+')
+	if (str[i] == '+')
 	{
-		g_sign = PLUS;
+		node->sign = PLUS;
 		while (str[i] == '+')
 			i++;
 	}
 	if (str[i] == '-')
 	{
-		g_flag = MINUS;
+		node->flag = MINUS;
 		while (str[i] == '-')
 			i++;
-		return (i);
 	}
 	else if (str[i] == '0')
 	{
-		g_flag = ZERO;
+		node->flag = ZERO;
 		i++;
 		if (str[i] == '-')
-			g_flag = MINUS;
-		return (i);
+		{
+			node->flag = MINUS;
+			i++;
+		}
 	}
 	else
-	{
-		g_flag = NOFLAG;
-		return (i);
-	}
+		node->flag = NOFLAG;
+	return (i);
 }
 
-int		ft_width(const char *str)
+int		ft_width(t_info *node, const char *str)
 {
 	int i;
 
@@ -97,11 +96,11 @@ int		ft_width(const char *str)
 	{
 		if (('0' <= str[i] && str[i] <= '9') || str[i] == '-')
 		{
-			g_width = ft_atoi(str);
-			if (g_width < 0)
+			node->width = ft_atoi(str);
+			if (node->width < 0)
 			{
-				g_flag = MINUS;
-				g_width *= -1;
+				node->flag = MINUS;
+				node->width *= -1;
 			}
 			while (('0' <= str[i] && str[i] <= '9'))
 				i++;
@@ -109,37 +108,37 @@ int		ft_width(const char *str)
 		}
 		else
 		{
-			g_width = va_arg(g_argument, int);
-			if (g_width < 0)
+			node->width = va_arg(node->argument, int);
+			if (node->width < 0)
 			{
-				g_flag = MINUS;
-				g_width *= -1;
+				node->flag = MINUS;
+				node->width *= -1;
 			}
 			i++;
 			return (i);
 		}
 	}
 	else
-		g_width = 0;
+		node->width = 0;
 	return (i);
 }
 
-int		ft_precision(const char *str)
+int		ft_precision(t_info *node, const char *str)
 {
 	int i;
 
 	i = 0;
 	if (str[i] == '.')
 	{
-		g_period = TRUE;
+		node->period = TRUE;
 		i++;
-		i += ft_asterik(str + i);
+		i += ft_asterik(node, str + i);
 		return (i);
 	}
 	return (i);
 }
 
-int		ft_asterik(const char *str)
+int		ft_asterik(t_info *node, const char *str)
 {
 	int i;
 
@@ -148,29 +147,29 @@ int		ft_asterik(const char *str)
 	{
 		if (('0' <= str[i] && str[i] <= '9') || (str[i] == '-'))
 		{
-			g_precision = ft_atoi(str);
+			node->precision = ft_atoi(str);
 			while ('0' <= str[i] && str[i] <= '9')
 				i++;
 			return (i);
 		}
 		else
 		{
-			g_precision = va_arg(g_argument, int);
-			if (g_precision <= 0)
-				g_flag = MINUS;
+			node->precision = va_arg(node->argument, int);
+			if (node->precision <= 0)
+				node->flag = MINUS;
 			i++;
 			return (i);
 		}
 	}
 	else
 	{
-		g_precision = 0;
+		node->precision = 0;
 		return (i);
 	}
 	return (i);
 }
 
-int		ft_argument(const char *str)
+int		ft_argument(t_info *node, const char *str)
 {
 	int		i;
 	int		j;
@@ -178,13 +177,13 @@ int		ft_argument(const char *str)
 
 	i = 0;
 	j = 0;
-	conv = "cspdiuxX";
+	conv = "cspdiuxX%";
 	while (str[i])
 	{
 		if (str[i] == conv[j])
 		{
-			g_conversion = conv[j];
-			i += ft_conversion(g_conversion);
+			node->conversion = conv[j];
+			i += ft_conversion(node, node->conversion);
 			return (i);
 		}
 		j++;
@@ -192,19 +191,21 @@ int		ft_argument(const char *str)
 	return (i);
 }
 
-int		ft_conversion(char g_conversion)
+int		ft_conversion(t_info *node, char conversion)
 {
-	if (g_conversion == 'c')
-		ft_c_argument();
-	else if (g_conversion == 'd' || g_conversion == 'i')
-		ft_d_argument();
-	else if (g_conversion == 's')
-		ft_s_argument();
-	else if (g_conversion == 'x' || g_conversion == 'X')
-		ft_x_argument();
-	else if (g_conversion == 'p')
-		ft_p_argument();
-	else if (g_conversion == 'u' || g_conversion == 'o')
-		ft_u_argument();
+	if (conversion == 'c')
+		ft_c_argument(node);
+	else if (conversion == 'd' || conversion == 'i')
+		ft_d_argument(node);
+	else if (conversion == 's')
+		ft_s_argument(node);
+	else if (conversion == 'x' || conversion == 'X')
+		ft_x_argument(node);
+	else if (conversion == 'p')
+		ft_p_argument(node);
+	else if (conversion == 'u' || conversion == 'o')
+		ft_u_argument(node);
+	else if (conversion == '%')
+		ft_no_argument(node);
 	return (1);
 }
