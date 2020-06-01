@@ -14,48 +14,43 @@
 
 int		ft_printf(const char *str, ...)
 {
+	t_info	node;
 	int		len;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	g_return = 0;
+	node.flag = '?';
+	node.sign = 0;
+	node.width = 0;
+	node.period = 0;
+	node.precision = 0;
+	node.ret_value = 0;
 	len = ft_strlen(str);
-	va_start(g_argument, str);
-	init_globalv();
+	va_start(node.argument, str);
 	while (str[i] != '\0' && i < len)
 	{
 		if (str[i] == '%' && str[i] != '\0')
 		{
-			i += ft_percentage(str + i);
+			i += ft_percentage(&node, str + i);
 			while (str[i] == '%')
-				i += ft_percentage(str + i);
+				i += ft_percentage(&node, str + i);
 		}
 		if (str[i] != '%' && str[i] != '\0')
 		{
-			ft_putchar(str[i]);
+			pt_putchar(&node, str[i]);
 		}
 		i++;
 	}
-	// printf("\n");
-	// printf("flag |%c| \n", g_flag);
-	// printf("sign |%c| \n", g_sign);
-	// printf("width|%d| \n", g_width);	
-	// printf("dot? |%d| \n", g_period);
-	// printf("preci|%d| \n", g_precision);
-	// printf("conv |%c| \n", g_conversion);
-	// printf("");
-	va_end(g_argument);
-	return (g_return);
-}
 
-// int		main(void)
-// {
-// 	int a = 0;
-// 	int b = 0;
-// 	a = printf(		"[%d%d%d%d]\n", -1, -2, 3, 4);
-// 	b = ft_printf(	"[%d%d%d%d]\n", -1, -2, 3, 4);
-// 	printf("\npf |%d|\nft |%d|\n\n", a, b);
-// 	return(0);
-// }
+	// printf("\n");
+	// printf("flag |%c| \n", node.flag);
+	// printf("sign |%d| \n", node.sign);
+	// printf("width|%d| \n", node.width);	
+	// printf("dot? |%d| \n", node.period);
+	// printf("preci|%d| \n", node.precision);
+	// printf("conv |%c| \n", node.conversion);
+	// printf("");
+
+	va_end(node.argument);
+	return (node.ret_value);
+}
