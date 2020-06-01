@@ -16,10 +16,6 @@ INC 	= printf.h
 FLAGS 	= -Wall -Werror -Wextra
 DIR 	= lib/
 
-BTEST 	= test.c
-CTEST	= test_c.c
-DTEST	= test_d.c
-
 SRC = 	src/ft_printf.c \
 		src/functions.c \
 		src/percentage.c \
@@ -40,6 +36,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME) $(DIR)$(LIB)
 	@mkdir obj
 	@mv $(OBJ) obj
+	@mv $(NAME) $(DIR)
 	@echo "~~~~ Done creating libftprintf.a \n"
 	
 %.o: %.c
@@ -59,27 +56,3 @@ fclean: clean
 re: fclean all
 	@echo "~~~~ Done Restarting \n"
 
-testB: re
-	$(CC) $(NAME) $(BTEST) -o test/test
-	@echo ""
-	@./test/test
-
-testC: re
-	$(CC) $(NAME) $(CTEST) -o test/test_c
-	@echo ""
-	@./test/test_c
-
-testD: re
-	$(CC) $(NAME) $(DTEST) -o test/test_d
-	@echo ""
-	@./test/test_d
-
-fix: re
-	@gcc -g $(SRC)
-	@echo "---- Done compiling for debugger.\n"
-	@mv a.out a.out.dSYM /test
-	@./test/a.out
-
-add:
-	git add $(SRC) Makefile $(INC) $(TEST)
-	git status
