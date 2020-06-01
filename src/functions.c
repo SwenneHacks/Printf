@@ -12,15 +12,6 @@
 
 #include "../printf.h"
 
-void	init_globalv(void)
-{
-	g_flag = -1;
-	g_sign = 0;
-	g_width = 0;
-	g_period = 0;
-	g_precision = 0;
-}
-
 int		ft_sign(int nbr)
 {
 	if (nbr < 0)
@@ -34,99 +25,98 @@ int	ft_maxof(int v1, int v2)
 	return ((v1 < v2) ? (v2) : (v1)); 
 }
 
-int		ft_putsign(int nbr)
+void	pt_putchar(t_info *node, char c)
+{
+	write(1, &c, 1);
+	node->ret_value++;
+}
+
+int		pt_putsign(t_info *node, int nbr)
 {
 	if (nbr >= 0)
 	{
-		if (g_sign == PLUS)
-			ft_putchar('+');
-		else if (g_sign == SPACE)
-			ft_putchar(' ');
+		if (node->sign == PLUS)
+			pt_putchar(node, '+');
+		else if (node->sign == SPACE)
+			pt_putchar(node, ' ');
 	}
 	else
 	{
-		ft_putchar('-');
+		pt_putchar(node, '-');
 		nbr = nbr * -1;
 	}
 	return (nbr);
-
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	g_return++;
-}
-
-void	ft_putstr(char *str)
+void	pt_putstr(t_info *node, char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		ft_putchar(str[i]);
+		pt_putchar(node, str[i]);
 		i++;
 	}
 }
 
-int		ft_putlen(char c, int len)
+int		pt_putlen(t_info *node, char c, int len)
 {
 	if (len < 0)
 		return (0);
 	while (len)
 	{
-		ft_putchar(c);
+		pt_putchar(node, c);
 		len--;
 	}
 	return (0);
 }
 
-void	ft_putnbr(int n)
+void	pt_putnbr(t_info *node, int n)
 {
 	unsigned int nb;
 
 	nb = n;
 	if (n < 0)
 	{
-		ft_putchar('-');
+		pt_putchar(node, '-');
 		nb = -n;
 	}
 	if (nb <= 9)
 	{
-		ft_putchar(nb + 48);
+		pt_putchar(node, nb + 48);
 	}
 	if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
-		ft_putchar(nb % 10 + 48);
+		pt_putnbr(node, nb / 10);
+		pt_putchar(node, nb % 10 + 48);
 	}
 }
 
-void	ft_putocta(unsigned long n)
+void	pt_putocta(t_info *node, unsigned long n)
 {
 	if (n > 7)
 	{
-		ft_putocta(n / 8);
-		ft_putocta(n % 8);
+		pt_putocta(node, n / 8);
+		pt_putocta(node, n % 8);
 	}
 	else
-		ft_putchar(n % 8 + '0');
+		pt_putchar(node, n % 8 + '0');
 }
 
-void	ft_puthexa(unsigned long n, char c)
+void	pt_puthexa(t_info *node, unsigned long n, char c)
 {
 	if (n > 15)
 	{
-		ft_puthexa(n / 16, c);
-		ft_puthexa(n % 16, c);
+		pt_puthexa(node, n / 16, c);
+		pt_puthexa(node, n % 16, c);
 	}
 	else if (n > 9 && c == 'x')
-		ft_putchar(n + 87);
+		pt_putchar(node, n + 87);
 	else if (n > 9 && c == 'X')
-		ft_putchar(n + 55);
+		pt_putchar(node, n + 55);
 	else
-		ft_putchar(n % 16 + '0');
+		pt_putchar(node, n % 16 + '0');
 }
 
 size_t	ft_strlen(const char *str)
