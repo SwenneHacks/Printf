@@ -15,13 +15,37 @@
 void	ft_p_argument(t_info *node)
 {
 	unsigned long	nbr;
+	int ox;
 	int	len;
+	int width;
+	int precision;
 
+	ox = 2;
+	width = node->width;
+	precision = node->precision;
 	nbr = (unsigned long)va_arg(node->argument, void *);
 	len = ft_lenbase(nbr, 16);
-	if (node->conversion == 'p')
+	if (nbr == 0 && node->period == TRUE && precision == 0)
+	{
+		if (node->flag == NOFLAG  || node->flag == ZERO)
+			pt_putlen(node, ' ', width - ox);
 		pt_putstr(node, "0x");
+		if (node->flag == MINUS)
+			pt_putlen(node, ' ', width - ox);
+	}
+	else
+	{
+		if (node->flag == NOFLAG)
+			pt_putlen(node, ' ', width - ft_maxof(len, precision) - ox);
+		pt_putstr(node, "0x");
+		if (precision > len)
+			pt_putlen(node, '0', precision - len);
+		if (node->flag == ZERO)
+			pt_putlen(node, '0', width - ft_maxof(len, precision) - ox);
 		pt_puthexa(node, nbr, 'x');
+		if (node->flag == MINUS)
+			pt_putlen(node, ' ', width - ft_maxof(len, precision) - ox);
+	}
 }
 
 void	ft_no_argument(t_info *node)
