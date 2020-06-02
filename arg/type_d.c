@@ -40,23 +40,20 @@ void	preci_d(t_info *node, int nbr, int len)
 
 	sign = 0;
 	if (nbr < 0)
-		sign = TRUE;
+		sign++;
 	if (node->flag == MINUS)
 	{
 		nbr = pt_putsign(node, nbr);
 		pt_putlen(node, '0', node->precision - len + sign);
 		pt_putnbr(node, nbr);
 	}
-	if (node->width)
+	if (node->precision < node->width)
 	{
-		if (node->precision < node->width)
-		{
-			pt_putlen(node, ' ', node->width - ft_maxof(node->precision, len) - sign);
-			if (node->precision < len)
-				pt_putlen(node, ' ', sign);
-		}
-		if (node->width > 9)
-			pt_putlen(node, ' ', node->width % 9 - len - sign);
+		if (node->sign == PLUS)
+			sign++;
+		pt_putlen(node, ' ', node->width - ft_maxof(node->precision, len) - sign);
+		if (node->precision < len)
+			pt_putlen(node, ' ', sign);
 	}
 	if (node->flag == ZERO || node->flag == NOFLAG)
 	{
@@ -73,32 +70,42 @@ void	ft_d_argument(t_info *node)
 
 	nbr = va_arg(node->argument, int);
 	len = ft_lenbase(nbr, 10);
+	// printf("len  |%d|", len);
 	if (nbr == 0)
 	{
 		if (node->period == TRUE)
 		{
 			if (node->sign != 0)
 				node->width--;
+			if (node->sign != 0)
+				pt_putsign(node, nbr);
 			if (node->flag == ZERO)
 				pt_putlen(node, ' ', node->width - node->precision);
 			if (node->flag == NOFLAG)
 				pt_putlen(node, ' ', node->width - node->precision);
-			if (node->sign != 0)
-				pt_putsign(node, nbr);
 			pt_putlen(node, '0', node->precision);
 			if (node->flag == MINUS)
 				pt_putlen(node, ' ', node->width - node->precision);
 			
 		}
-		else if (node->period == FALSE)
+		else
 		{
-			if (node->width > 0 && node->flag == ZERO)
-				pt_putlen(node, '0', node->width - 1);
-			if (node->width > 0 && node->flag == NOFLAG)
-				pt_putlen(node, ' ', node->width - 1);
-			pt_putnbr(node, pt_putsign(node, nbr));
-			if (node->width > 0 && node->flag == MINUS)
-				pt_putlen(node, ' ', node->width - 1);
+			if (node->sign != 0)
+				node->width--;
+			if (node->flag == ZERO)
+			{
+				pt_putsign(node, nbr);
+				pt_putlen(node, '0', node->width - len);
+				pt_putnbr(node, nbr);
+			}
+			else 
+			{
+				if (node->flag == NOFLAG)
+					pt_putlen(node, ' ', node->width - len);
+				pt_putnbr(node, pt_putsign(node, nbr));
+				if (node->flag == MINUS)
+					pt_putlen(node, ' ', node->width - len);
+			}
 		}
 	}
 	else if (!node->period)
@@ -110,6 +117,4 @@ void	ft_d_argument(t_info *node)
 	}
 	else
 		preci_d(node, nbr, len);
-
-	// printf("len  |%d|", len);
 }
