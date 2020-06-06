@@ -11,10 +11,9 @@
 # **************************************************************************** #
 
 NAME 	= libftprintf.a
-LIB 	= libft.a
 INC 	= printf.h
 FLAGS 	= -Wall -Werror -Wextra
-DIR 	= lib/
+LIB 	= lib/libft.a
 
 SRC = 	src/ft_printf.c \
 		src/functions.c \
@@ -33,10 +32,9 @@ all: $(SRC) $(NAME)
 $(NAME): $(OBJ)
 	@echo ""
 	@ar rcs $@ $^
-	@ranlib $(NAME) $(DIR)$(LIB)
+	@ranlib $(NAME) $(LIB)
 	@mkdir obj
 	@mv $(OBJ) obj
-	@mv $(NAME) $(DIR)
 	@echo "~~~~ Done creating libftprintf.a \n"
 	
 %.o: %.c
@@ -45,6 +43,7 @@ $(NAME): $(OBJ)
 	
 clean:
 	@$(RM) -rf obj
+	@$(RM) $(OBJ) 
 	@echo "Removing $@"
 	@echo "~~~~ Done Cleaning \n"
 	
