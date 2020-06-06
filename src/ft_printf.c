@@ -41,10 +41,10 @@ int		ft_printf(const char *str, ...)
 		}
 		i++;
 	}
-
+	
 	// printf("\n");
 	// printf("flag |%c| \n", node.flag);
-	// printf("sign |%d| \n", node.sign);
+	// printf("sign |%c| \n", node.sign);
 	// printf("width|%d| \n", node.width);	
 	// printf("dot? |%d| \n", node.period);
 	// printf("preci|%d| \n", node.precision);

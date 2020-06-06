@@ -104,7 +104,7 @@ void	pt_putocta(t_info *node, unsigned long n)
 		pt_putchar(node, n % 8 + '0');
 }
 
-void	pt_puthexa(t_info *node, unsigned long n, char c)
+void	pt_puthexa(t_info *node, unsigned int n, char c)
 {
 	if (n > 15)
 	{

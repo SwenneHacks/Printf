@@ -51,7 +51,7 @@ size_t	ft_lenbase(long long nbr, int base);
 /*
 **      Adapted libft Functions:
 */
-void	pt_puthexa(t_info *node, unsigned long n, char c);
+void	pt_puthexa(t_info *node, unsigned int n, char c);
 void	pt_putocta(t_info *node, unsigned long n);
 void	pt_putnbr(t_info *node, int n);
 void	pt_putstr(t_info *node, char *str);
