@@ -155,8 +155,8 @@ int		ft_asterik(t_info *node, const char *str)
 		else
 		{
 			node->precision = va_arg(node->argument, int);
-			if (node->precision <= 0)
-				node->flag = MINUS;
+			if (node->precision < 0)
+				node->precision *= -1;
 			i++;
 			return (i);
 		}
