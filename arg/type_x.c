@@ -12,44 +12,88 @@
 
 #include "../printf.h"
 
-// void	ft_no_dot(int nbr, int len)
-// {
-// 	if (!g_width)
-// 		ft_puthexa(nbr, 'x');
-// 	else if (g_flag == MINUS && g_width != 0)
-// 	{
-// 		ft_puthexa(nbr, 'x');
-// 		ft_putlen(' ', ft_vabs(g_width) - len);
-// 	}
-// 	else if (g_flag == ZERO && g_width > 0)
-// 	{
-// 		ft_putlen('0', g_width - len);
-// 		ft_puthexa(nbr, 'x');
-// 	}
-// 	else if (g_flag == NOFLAG && g_width > 0)
-// 	{
-// 		ft_putlen(' ', g_width - len);
-// 		ft_puthexa(nbr, 'x');
-// 	}
-// 	if (g_conversion == 'X')
-// 		ft_puthexa(nbr, 'X');
-// }
+void	width_u(t_info *node, int nbr, int len)
+{
+	if (node->flag == ZERO)
+		pt_putlen(node, '0', node->width - len);
+	if (node->flag == NOFLAG)
+		pt_putlen(node, ' ', node->width - len);
+	if (node->conversion == 'X')
+		pt_puthexa(node, nbr, 'X');
+	if (node->conversion == 'x')
+		pt_puthexa(node, nbr, 'x');
+	if (node->flag == MINUS)
+		pt_putlen(node, ' ', node->width - len);
+}
+
+void	preci_u(t_info *node, int nbr, int len)
+{
+	if (node->precision > len)
+		pt_putlen(node, '0', node->precision - len);
+	if (node->precision > len && node->flag == ZERO)
+		pt_putlen(node, '0', node->width - ft_maxof(node->precision, len));
+	if (node->precision < len || node->flag == NOFLAG)
+		pt_putlen(node, ' ', node->width - ft_maxof(node->precision, len));
+	if (node->conversion == 'X')
+		pt_puthexa(node, nbr, 'X');
+	if (node->conversion == 'x')
+		pt_puthexa(node, nbr, 'x');
+	if (node->flag == MINUS)
+	{
+		pt_putlen(node, ' ', node->width - ft_maxof(node->precision, len));
+		if (node->width < node->precision)
+			pt_putlen(node, ' ', node->width - len);
+	}
+}
 
 void	ft_x_argument(t_info *node)
 {
 	int	nbr;
-	//int	len;
+	int	len;
 
 	nbr = va_arg(node->argument, unsigned int);
-	//len = ft_lenbase(nbr, 16);
-	if (node->conversion == 'x')
-		pt_puthexa(node, nbr, 'x');
-	if (node->conversion == 'X')
-		pt_puthexa(node, nbr, 'X');
-	// if (!g_period)
-	// 	ft_no_dot(nbr, len);
-	// else
-	// 	ft_period(nbr, char_nbr);
+	len = ft_lenbase(nbr, 16);
+	if (nbr < 0)
+	{
+		if ((node->flag == NOFLAG || node->flag == ZERO) && (node->period == TRUE))
+			pt_putlen(node, ' ', node->width - ft_maxof(node->precision, 8));
+		if (node->width >= 8 && node->flag == ZERO && node->period == FALSE)
+			pt_putlen(node, '0', node->width - 8);
+		if (node->precision > 8 && node->flag != MINUS)
+			pt_putlen(node, '0', node->precision - 8);
+		if (node->conversion == 'x')
+			pt_putstr(node, "fffffff7");
+		else
+			pt_putstr(node, "FFFFFFF7");
+		if (node->width > 8 && node->flag == MINUS)
+			pt_putlen(node, ' ', node->width - 8);
+	}
+	else if (nbr == 0)
+	{
+		if (node->period == TRUE && node->flag != MINUS)
+			pt_putlen(node, ' ', node->width - node->precision);
+		if (node->precision > 0)
+			pt_putlen(node, '0', node->precision);
+		if (node->precision == 0 && node->width > 0 && node->flag == ZERO)
+			pt_putlen(node, '0', node->width - 1);
+		if (node->precision == 0 && node->width >= 0 && node->flag != MINUS)
+			pt_putchar(node, '0');
+		if (node->flag == MINUS)
+			pt_putlen(node, ' ', node->width - ft_maxof(node->precision, len));
+	}
+	else if (!node->width && !node->period)
+	{
+		if (node->conversion == 'X')
+			pt_puthexa(node, nbr, 'X');
+		if (node->conversion == 'x')
+			pt_puthexa(node, nbr, 'x');
+	}
+	else if (!node->period)
+		width_u(node, nbr, len);
+	else
+		preci_u(node, nbr, len);
+
+	// printf("\nlen  |%d|\nnbr  |%d|\n", len, nbr);
 }
 
-// void	ft_period(int nbr, int char_nbr)
+
