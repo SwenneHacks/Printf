@@ -32,7 +32,10 @@ all: $(SRC) $(NAME)
 $(NAME): $(OBJ)
 	@echo ""
 	@ar rcs $@ $^
-	@ranlib $(NAME) $(LIB)
+	@ranlib $(NAME)
+	@ar -q $(LIB) $(OBJ)
+	@cp $(LIB) $(NAME)
+	@echo "~~ Done linking libft.a \n"
 	@mkdir obj
 	@mv $(OBJ) obj
 	@echo "~~~~ Done creating libftprintf.a \n"

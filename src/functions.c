@@ -12,14 +12,6 @@
 
 #include "../printf.h"
 
-int		ft_sign(int nbr)
-{
-	if (nbr < 0)
-		return (nbr * -1);
-	else
-		return (nbr);
-}
-
 int	ft_maxof(int v1, int v2)
 {
 	return ((v1 < v2) ? (v2) : (v1)); 
@@ -72,9 +64,9 @@ int		pt_putlen(t_info *node, char c, int len)
 	return (0);
 }
 
-void	pt_putnbr(t_info *node, int n)
+void	pt_putnbr(t_info *node, unsigned long n)
 {
-	unsigned int nb;
+	unsigned long nb;
 
 	nb = n;
 	if (n < 0)
@@ -104,7 +96,7 @@ void	pt_putocta(t_info *node, unsigned long n)
 		pt_putchar(node, n % 8 + '0');
 }
 
-void	pt_puthexa(t_info *node, unsigned int n, char c)
+void	pt_puthexa(t_info *node, unsigned long n, char c)
 {
 	if (n > 15)
 	{
@@ -117,18 +109,6 @@ void	pt_puthexa(t_info *node, unsigned int n, char c)
 		pt_putchar(node, n + 55);
 	else
 		pt_putchar(node, n % 16 + '0');
-}
-
-size_t	ft_strlen(const char *str)
-{
-	int i;
-
-	i = 0;
-	if (!str)
-		return (i);
-	while (str[i])
-		i++;
-	return (i);
 }
 
 int	ft_atoi(const char *str)
@@ -159,7 +139,6 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
-
 
 int		ft_isdigit_signed(int c)
 {
