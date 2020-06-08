@@ -14,31 +14,29 @@
 
 void	ft_u_argument(t_info *node)
 {
-	int	nbr;
+	unsigned int	nbr;
+	int neg;
 	int len;
 	int width;
 	int precision;
-	int *u;
 
-	u = &nbr;
 	width = node->width;
 	precision = node->precision;
-	nbr = va_arg(node->argument, unsigned int);
+	nbr = (unsigned int)va_arg(node->argument, unsigned int);
 	len = ft_lenbase(nbr, 10);
-	//printf("len  |%d|", len);
-	if (node->conversion == 'o')
-		pt_putocta(node, nbr);
+	neg = nbr;
 	if (node->conversion == 'u')
 	{
-		if (nbr < 0)
+		if (neg < 0 || nbr == UNS_MAX)
 		{
+			neg = nbr * -1;
 			if (node->flag == NOFLAG)
 				pt_putlen(node, ' ', width - ft_maxof(precision, 10));
 			if (precision > 10)
 				pt_putlen(node, '0', precision - 10);
 			if (node->flag == ZERO)
 				pt_putlen(node, '0', width - ft_maxof(precision, 10));
-			pt_putocta(node, (unsigned int)u * -1);
+			pt_putnbr(node, UNS_MAX - neg + 1);
 			if (node->flag == MINUS)
 				pt_putlen(node, ' ', width - ft_maxof(precision, 10));
 		}
@@ -90,7 +88,7 @@ void	ft_u_argument(t_info *node)
 					pt_putnbr(node, pt_putsign(node, nbr));
 				}
 			}
-			else
+			if (node->period == TRUE)
 			{
 				if (node->flag == ZERO || node->flag == NOFLAG)
 					pt_putlen(node, ' ', width - ft_maxof(precision, len));
@@ -107,4 +105,6 @@ void	ft_u_argument(t_info *node)
 			}
 		}
 	}
+	else if (node->conversion == 'o')
+		pt_putocta(node, nbr);
 }
