@@ -54,11 +54,15 @@ int		ft_flags(t_info *node, const char *str)
 	int i;
 
 	i = 0;
-	if (str[i] == ' ')
+	while (str[i] == ' ')
 	{
 		node->sign = SPACE;
-		while (str[i] == ' ')
-			i++;
+		i++;
+	}
+	while (str[i] == '#')
+	{
+		node->sign = HASH;
+		i++;
 	}
 	if (str[i] == '+')
 	{
@@ -76,6 +80,8 @@ int		ft_flags(t_info *node, const char *str)
 	{
 		node->flag = ZERO;
 		i++;
+		while (str[i] == '0')
+			i++;
 		if (str[i] == '-')
 		{
 			node->flag = MINUS;
