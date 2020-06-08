@@ -22,7 +22,7 @@ void	ft_c_argument(t_info *node)
 	if (node->flag == MINUS)
 	{
 		pt_putchar(node, c);
-		pt_putlen(node, ' ', (ft_sign(node->width) - 1));
+		pt_putlen(node, ' ', node->width - 1);
 	}
 	else if (node->width > 0 && node->flag == NOFLAG)
 	{

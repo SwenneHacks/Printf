@@ -24,11 +24,12 @@
 # define FALSE 0
 # define INT_MIN -2147483648
 # define INT_MAX 2147483648
+# define UNS_MAX 4294967295
 
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "../../libft/libft.h"
+# include "lib/libft.h"
 
 typedef struct s_info
 {
@@ -42,18 +43,15 @@ typedef struct s_info
     va_list		argument;
 } 				t_info;
 
-int		ft_sign(int nbr);
 int     ft_maxof(int v1, int v2);
 int		ft_isdigit_signed(int c);
-int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
 size_t	ft_lenbase(long long nbr, int base);
 /*
 **      Adapted libft Functions:
 */
-void	pt_puthexa(t_info *node, unsigned int n, char c);
+void	pt_puthexa(t_info *node, unsigned long n, char c);
 void	pt_putocta(t_info *node, unsigned long n);
-void	pt_putnbr(t_info *node, int n);
+void	pt_putnbr(t_info *node, unsigned long n);
 void	pt_putstr(t_info *node, char *str);
 int		pt_putlen(t_info *node, char c, int len);
 void	pt_putchar(t_info *node, char c);
