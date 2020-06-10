@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_functions.c                                  :+:    :+:            */
+/*   pfunctions.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
+#include "printf.h"
 
 int	ft_maxof(int v1, int v2)
 {
@@ -109,35 +109,6 @@ void	pt_puthexa(t_info *node, unsigned long n, char c)
 		pt_putchar(node, n + 55);
 	else
 		pt_putchar(node, n % 16 + '0');
-}
-
-int	ft_atoi(const char *str)
-{
-	unsigned long	result;
-	int				i;
-	int				sign;
-
-	result = 0;
-	i = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		if (result >= 9223372036854775807 && sign == -1)
-			return (0);
-		if (result >= 9223372036854775807 && sign == 1)
-			return (-1);
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
 }
 
 int		ft_isdigit_signed(int c)

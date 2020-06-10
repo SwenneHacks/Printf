@@ -29,7 +29,6 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "lib/libft.h"
 
 typedef struct s_info
 {
@@ -46,6 +45,8 @@ typedef struct s_info
 int     ft_maxof(int v1, int v2);
 int		ft_isdigit_signed(int c);
 size_t	ft_lenbase(long long nbr, int base);
+size_t	ft_strlen(const char *str);
+int		ft_atoi(const char *str);
 /*
 **      Adapted libft Functions:
 */

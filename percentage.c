@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
+#include "printf.h"
 
 /*
 ** %[2xpercent?][flags][width][.precision][length][conversion]
