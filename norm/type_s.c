@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:30:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/12 23:11:48 by sofferha      ########   odam.nl         */
+/*   Updated: 2020/06/12 23:29:52 by sofferha      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,38 +57,28 @@ void	str_loop(t_info *node, char *str, int i)
 
 void	preci_s(t_info *node, char *str, int len, int i)
 {
-	if (node->flag == MINUS)
-	{
-		while (i < node->precision && str[i])
-			str_loop(node, str, i);
-		pt_putlen(node, ' ', node->width - i);
-	}
-	else if (!node->width)
-	{
-		while (i < node->precision && str[i])
-			str_loop(node, str, i);
-	}
-	else
-	{
+	if (node->flag != MINUS)
 		pt_putlen(node, ' ', node->width - len);
-		while (i < len && str[i])
-			str_loop(node, str, i);
+	while (i < node->precision && str[i])
+	{
+		pt_putchar(node, str[i]);
+		i++;
 	}
+	if (node->flag == MINUS)
+		pt_putlen(node, ' ', node->width - i);
 }
 
 void	ft_s_argument(t_info *node)
 {
-	int		i;
 	int		len;
 	char	*str;
 
-	i = 0;
-	len = ft_strlen(str);
 	str = va_arg(node->argument, char *);
+	len = ft_strlen(str);
 	if (str == NULL)
 		str = "(null)";
 	if (!node->period)
 		width_s(node, str, len);
 	else
-		preci_s(node, str, len, i);
+		preci_s(node, str, len, 0);
 }
