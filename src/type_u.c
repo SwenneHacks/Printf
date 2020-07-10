@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:26:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/22 22:06:42 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/06/24 21:19:55 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ void	nbr_neg(t_info *node, unsigned int nbr)
 		pt_putlen(node, '0', node->precision - 10);
 	if (node->flag == ZERO)
 		pt_putlen(node, '0', node->width - ft_maxof(node->precision, 10));
-	pt_putnbr(node, UNS_MAX - neg + 1);
+	if (nbr != UNS_MAX)
+		pt_putnbr(node, nbr);
+	else
+		pt_putnbr(node, UNS_MAX);
 	if (node->flag == MINUS)
 		pt_putlen(node, ' ', node->width - ft_maxof(node->precision, 10));
 }

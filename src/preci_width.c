@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:27:06 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/22 21:21:07 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/06/24 22:33:30 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		ft_asterik(t_info *node, const char *str)
 		{
 			node->precision = va_arg(node->argument, int);
 			if (node->precision < 0)
-				node->precision *= -1;
+				node->period = 0;
 			i++;
 		}
 		return (i);

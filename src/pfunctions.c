@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:27:17 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/24 17:16:28 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/06/24 21:15:43 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int		pt_putlen(t_info *node, char c, int len)
 
 void	pt_putnbr(t_info *node, long n)
 {
-	if ((n == INT_MIN || n == INT_MAX))
+	if (n == INT_MAX)
 		pt_putstr(node, "2147483647");
+	else if (n == INT_MIN)
+		pt_putstr(node, "2147483648");
 	else if (n < 0)
 	{
 		pt_putchar(node, '-');

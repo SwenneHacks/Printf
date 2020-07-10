@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:26:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/24 17:15:53 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/06/24 22:33:17 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_d_argument(t_info *node)
 		sign++;
 	if (nbr == 0)
 		process_zero(node, 0);
-	else if (!node->precision)
+	else if (!node->period)
 	{
 		if (!node->width)
 			pt_putnbr(node, pt_putsign(node, nbr));

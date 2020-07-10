@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:26:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/22 19:02:35 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/06/24 21:05:01 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	hashtag(t_info *node)
 	}
 }
 
-void	width_x(t_info *node, int nbr, int len)
+void	width_x(t_info *node, unsigned int nbr, int len)
 {
 	if (node->width > 0 && node->sign == HASH)
 		len += 2;
@@ -61,32 +61,9 @@ void	preci_x(t_info *node, unsigned int nbr, int len, char c)
 	{
 		pt_putlen(node, ' ', width - ft_maxof(precision, len) - prefix);
 		if (width < precision)
-			pt_putlen(node, ' ', width - len);
+			pt_putlen(node, ' ', width - ft_maxof(precision, len));
 	}
 }
-
-// void	neg_nbr(t_info *node, unsigned int nbr, int len, char c)
-// {
-// 	int width;
-// 	int precision;
-
-// 	width = node->width;
-// 	precision = node->precision;
-// 	if (node->sign == HASH)
-// 		len += 1;
-// 	if ((node->flag == NOFLAG || node->flag == ZERO) && (node->period == TRUE))
-// 		pt_putlen(node, ' ', width - ft_maxof(precision, len));
-// 	if (width >= 8 && node->flag == NOFLAG && node->period == FALSE)
-// 		pt_putlen(node, ' ', width - ft_maxof(precision, len));
-// 	hashtag(node);
-// 	if (width >= 8 && node->flag == ZERO && node->period == FALSE)
-// 		pt_putlen(node, '0', width - ft_maxof(precision, len));
-// 	if (precision > 8)
-// 		pt_putlen(node, '0', precision - 8);
-// 	pt_puthexa(node, nbr, c);
-// 	if (width > 8 && node->flag == MINUS)
-// 		pt_putlen(node, ' ', width - ft_maxof(precision, len));
-// }
 
 void	zero_nbr(t_info *node, int len)
 {
@@ -119,8 +96,6 @@ void	ft_x_argument(t_info *node)
 	neg = nbr;
 	if (nbr == 0)
 		zero_nbr(node, len);
-	// else if (neg < 0 || nbr == UNS_MAX)
-	// 	neg_nbr(node, nbr, 8, c);
 	else if (!node->period)
 		width_x(node, nbr, len);
 	else

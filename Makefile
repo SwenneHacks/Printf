@@ -6,7 +6,7 @@
 #    By: swofferh <swofferh@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/16 17:46:43 by swofferh      #+#    #+#                  #
-#    Updated: 2020/06/22 22:00:47 by swofferh      ########   odam.nl          #
+#    Updated: 2020/06/26 15:16:14 by swofferh      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,21 +46,21 @@ $(NAME): $(OBJ) $(LIB)
 	@mkdir -p obj
 	@mv $(OBJ) obj
 	@echo "\n$(Y)Dooone$(W) creating $@"
-	
+
 $(LIB):
 	@echo "$(Y)NOW $(W)libft"
-	@$(MAKE) -C libft 
+	@$(MAKE) -C libft
 
 %.o: %.c
 	@echo "$(B)Compiling$(W) $< $@"
 	@$(CC) $(FLAGS) -I $(INC) -c $< -o $@
-	
+
 clean:
 	@echo "\n$(G)$@ $(B)printf"
 	@$(RM) -rf obj
 	@$(RM) $(OBJ)
 	@echo "$(Y)~~~~~~~~~~~~ Done\n"
-	
+
 fclean: clean
 	@$(MAKE) fclean -C libft
 	@echo "$(G)$@ $(B)printf"
@@ -71,4 +71,3 @@ re: fclean all
 	@echo "\n\n$(W)	   Done"
 	@echo "	$(P)RE$(G)ST$(Y)AR$(B)TING"
 	@echo "	$(W)   Printf.\n\n\n$(W)"
-
