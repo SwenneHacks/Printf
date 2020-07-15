@@ -6,7 +6,7 @@
 #    By: swofferh <swofferh@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/16 17:46:43 by swofferh      #+#    #+#                  #
-#    Updated: 2020/06/26 15:16:14 by swofferh      ########   odam.nl          #
+#    Updated: 2020/07/10 20:59:41 by swofferh      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = src/ft_printf.c \
 	src/type_u.c \
 
 OBJ = $(SRC:%.c=%.o)
+BOBJ = $(SRC:%.c=%_bonus.o)
 
 P = \x1b[35m
 B = \x1b[34m
@@ -49,9 +50,21 @@ $(NAME): $(OBJ) $(LIB)
 
 $(LIB):
 	@echo "$(Y)NOW $(W)libft"
-	@$(MAKE) -C libft
+	@$(MAKE) -C libft 
 
 %.o: %.c
+	@echo "$(B)Compiling$(W) $< $@"
+	@$(CC) $(FLAGS) -I $(INC).h -c $< -o $@
+
+bonus: $(BOBJ) $(LIB)
+	@/bin/rm -rf $(NAME)
+	@ar rcs $(NAME) $^
+	@ranlib $(NAME)
+	@mkdir -p obj
+	@mv $(BOBJ) obj
+	@echo "\n$(Y)Dooone$(W) adding bonus to $(NAME) :)\n\n"
+
+%_bonus.o: %.c
 	@echo "$(B)Compiling$(W) $< $@"
 	@$(CC) $(FLAGS) -I $(INC) -c $< -o $@
 
