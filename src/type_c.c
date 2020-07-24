@@ -6,11 +6,11 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:31:04 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/10 18:22:25 by sofferha      ########   odam.nl         */
+/*   Updated: 2020/07/24 17:17:20 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
+#include "printf.h"
 
 void	ft_c_argument(t_info *node)
 {

@@ -6,11 +6,11 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:26:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/22 21:52:44 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/07/24 17:17:20 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
+#include "printf.h"
 
 void	preci_p(t_info *node, unsigned long nbr, int len, int ox)
 {
