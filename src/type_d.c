@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:26:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/07/24 17:17:20 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/07/24 17:31:47 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,31 @@ void	width_d(t_info *node, int nbr, int len)
 	}
 }
 
-void	preci_d(t_info *node, int nbr, int len, int sign)
+void	preci_d(t_info *node, int nbr, int len, int neg)
 {
 	int preci;
+	int sign;
 
+	sign = 0;
 	preci = node->precision;
+	if (node->sign != 0 && neg == 0)
+		sign++;
 	if (node->flag == MINUS)
 	{
 		nbr = pt_putsign(node, nbr);
-		pt_putlen(node, '0', node->precision - len + sign);
+		pt_putlen(node, '0', node->precision - len + neg);
 		pt_putnbr(node, nbr);
 	}
 	if (preci < node->width)
 	{
-		pt_putlen(node, ' ', node->width - ft_maxof(preci, len) - sign);
-		if (preci < len)
-			pt_putlen(node, ' ', sign);
+		pt_putlen(node, ' ', node->width - ft_maxof(preci, len) - neg - sign);
+		if (preci <= len)
+			pt_putlen(node, ' ', neg);
 	}
 	if (node->flag == ZERO || node->flag == NOFLAG)
 	{
 		nbr = pt_putsign(node, nbr);
-		pt_putlen(node, '0', node->precision - len + sign);
+		pt_putlen(node, '0', node->precision - len + neg);
 		pt_putnbr(node, nbr);
 	}
 }

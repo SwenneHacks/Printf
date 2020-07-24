@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:26:36 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/07/24 17:17:20 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/07/24 19:43:40 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ int		ft_printf(const char *str, ...)
 		}
 		i++;
 	}
-
-	// printf("\n");
-	// printf("flag |%c| \n", node.flag);
-	// printf("sign |%d| \n", node.sign);
-	// printf("width|%d| \n", node.width);	
-	// printf("dot? |%d| \n", node.period);
-	// printf("preci|%d| \n", node.precision);
-	// printf("conv |%c| \n", node.conversion);
-	// printf("");
-
 	va_end(node.argument);
 	return (node.ret_value);
 }

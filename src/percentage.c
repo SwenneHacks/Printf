@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:27:06 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/07/24 17:17:20 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/07/24 17:53:10 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_percentage(t_info *node, const char *str)
 	{
 		i += ft_signs(node, str + i);
 		i += ft_flags(node, str + i);
+		i += ft_signs(node, str + i);
 		i += ft_width(node, str + i);
 		i += ft_precision(node, str + i);
 		i += ft_argument(node, str + i);
@@ -68,16 +69,16 @@ int		ft_flags(t_info *node, const char *str)
 	if (str[i] == '-')
 	{
 		node->flag = MINUS;
-		while (str[i] == '-')
-			i++;
-		if (str[i] == '0')
+		while (str[i] == '-' || str[i] == '0')
 			i++;
 	}
 	else if (str[i] == '0')
 	{
 		node->flag = ZERO;
 		i++;
-		while (str[i] == '0')
+		if (str[i] == '-')
+			node->flag = MINUS;
+		while (str[i] == '0' || str[i] == '-')
 			i++;
 	}
 	else
