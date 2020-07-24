@@ -6,28 +6,30 @@
 #    By: swofferh <swofferh@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/16 17:46:43 by swofferh      #+#    #+#                  #
-#    Updated: 2020/07/10 20:59:41 by swofferh      ########   odam.nl          #
+#    Updated: 2020/07/24 17:21:21 by swofferh      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= libftprintf.a
-INC 	= printf.h
-FLAGS 	= -Wall -Werror -Wextra
 LIB 	= libft/libft.a
+INC 	= printf.h
+DIR		= src
+BDIR	= bonus
+FLAGS 	= -Wall -Werror -Wextra
 
-SRC = src/ft_printf.c \
-	src/percentage.c \
-	src/pfunctions.c \
-	src/preci_width.c \
-	src/type_s.c \
-	src/type_d.c \
-	src/type_c.c \
-	src/type_x.c \
-	src/type_p.c \
-	src/type_u.c \
+SRC = ft_printf \
+	percentage \
+	pfunctions \
+	preci_width \
+	type_s \
+	type_d \
+	type_c \
+	type_x \
+	type_p \
+	type_u \
 
-OBJ = $(SRC:%.c=%.o)
-BOBJ = $(SRC:%.c=%_bonus.o)
+OBJ = $(addprefix $(DIR)/,$(notdir $(addsuffix .o,$(SRC))))
+BOBJ = $(addprefix bonus/,$(notdir $(addsuffix _bonus.o,$(SRC))))
 
 P = \x1b[35m
 B = \x1b[34m
@@ -54,7 +56,7 @@ $(LIB):
 
 %.o: %.c
 	@echo "$(B)Compiling$(W) $< $@"
-	@$(CC) $(FLAGS) -I $(INC).h -c $< -o $@
+	@$(CC) $(FLAGS) -I $(DIR) -c $< -o $@
 
 bonus: $(BOBJ) $(LIB)
 	@/bin/rm -rf $(NAME)
@@ -66,7 +68,7 @@ bonus: $(BOBJ) $(LIB)
 
 %_bonus.o: %.c
 	@echo "$(B)Compiling$(W) $< $@"
-	@$(CC) $(FLAGS) -I $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) -I $(BDIR) -c $< -o $@
 
 clean:
 	@echo "\n$(G)$@ $(B)printf"
