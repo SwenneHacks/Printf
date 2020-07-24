@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   percentage.c                                       :+:    :+:            */
+/*   percentage_bonus.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:27:06 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/22 21:49:19 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/07/24 20:13:51 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ int		ft_argument(t_info *node, const char *str)
 	conv = "cspdiuxX%";
 	while (str[i])
 	{
+		if (str[i] == '$')
+			i++;
+		if (ft_isdigit(str[i]) == TRUE)
+			i++;
 		if (str[i] == conv[j])
 		{
 			node->conversion = conv[j];

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   printf.h                                           :+:    :+:            */
+/*   bonus.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:27:52 by swofferh      #+#    #+#                 */
-/*   Updated: 2020/06/22 18:39:08 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/07/24 20:32:02 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
+# include "../libft/libft.h"
 
 typedef	struct	s_info
 {
