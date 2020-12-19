@@ -6,7 +6,7 @@
 #    By: swofferh <swofferh@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/16 17:46:43 by swofferh      #+#    #+#                  #
-#    Updated: 2020/07/24 20:28:44 by swofferh      ########   odam.nl          #
+#    Updated: 2020/12/19 22:49:35 by sofferha      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,9 +60,9 @@ $(LIB):
 
 bonus: $(BOBJ) $(LIB)
 	@/bin/rm -rf $(NAME)
-	@ar rc $(NAME) $^
-	@ranlib $(NAME)
+	@ar rcs $(NAME) $^
 	@ar -q $(LIB) $(BOBJ)
+	@cp $(LIB) $(NAME)
 	@mkdir -p obj
 	@mv $(BOBJ) obj
 	@echo "\n$(Y)Dooone$(W) adding bonus to $(NAME) :)\n\n"
